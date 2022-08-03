@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useEffect } from "react";
-
 import './App.css';
 
 function App() {
 
   const callApi = async () => {
     axios
-    .get("/api")
+    .get("/prj05")
     .then((res) =>
       console.log(res.data.test));
   };
