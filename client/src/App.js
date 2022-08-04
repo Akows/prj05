@@ -6,9 +6,9 @@ function App() {
 
   const callApi = async () => {
     axios
-    .get("/prj05")
+    .get("/prj05/2")
     .then((res) =>
-      console.log(res.data.test));
+      console.log(res.data));
   };
 
   useEffect(() => {
