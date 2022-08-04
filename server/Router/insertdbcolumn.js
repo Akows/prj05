@@ -13,10 +13,10 @@ const db = mysql.createPool({
 
 router.post("/", (req, res) => {
 
-    const sqlQuery = "CREATE TABLE `prj05`.`BOARD` (`BOARD_NUMBER` INT NOT NULL,`BOARD_TITLE` VARCHAR(100) NOT NULL,`BOARD_TEXT` VARCHAR(1000) NOT NULL, PRIMARY KEY (`BOARD_NUMBER`))";
+    const sqlQuery = "INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) VALUES ('1', '1번 제목', '1번 내용')";
 
     db.query(sqlQuery, () => {
-        res.send("TABLE CREATED.");
+        res.send("INSERT COLUMN.");
     });
     
 })

@@ -17,12 +17,30 @@
     width: 25%;
     height: 100%;
 
-    display : flex;
+    display: inline-flex;
+    flex-direction: column;
+
     justify-content: center;
     align-items : center;
 }
+.board-inner-sidemenu-button {
+    width: 250px;
+    height: 50px;
+
+    margin: 10px;
+}
+
 .board-inner-boardcontents {
     width: 75%;
     height: 100%;
 }
+.board-inner-boardcontents-title {
+    width: 100%;
+    height: 20%;
+}
+.board-inner-boardcontents-context {
+    width: 100%;
+    height: 80%;
+}
+
 

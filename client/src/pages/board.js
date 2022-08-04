@@ -1,15 +1,36 @@
+import React, { useState } from "react";
 import axios from 'axios';
 
 import '../style/Board.css';
 
 const Board = () => {
 
+    const [boarddata, setBoarddata] = useState([]);
+
     const dbtablemake = () => {
         axios
-        .get('/prj05/cdbt')
+        .post('/prj05/cdbt')
         .then(res => 
-            console.log('테이블 생성')
+            console.log(res.data)
         );
+    };
+
+    const dbtableselect = () => {
+        axios
+        .get('/prj05/cdbs')
+        .then(res => {
+            setBoarddata(res.data);
+            console.log(res.data);
+            console.log(boarddata);
+        });
+    };
+
+    const dbtableinsert = () => {
+        axios
+        .post('/prj05/cdbi')
+        .then(res => {
+            console.log(res.data);
+        });
     };
 
     return (
@@ -17,11 +38,36 @@ const Board = () => {
             <div className='board-outer'>
 
                 <div className='board-inner-sidemenu'>
-                    <button onClick={dbtablemake}>
+                    <button className='board-inner-sidemenu-button' onClick={dbtablemake}>
                         DB에 테이블 생성하기
                     </button>
+
+                    <button className='board-inner-sidemenu-button' onClick={dbtableselect}>
+                        게시판 데이터 가져오기
+                    </button>
+
+                    <button className='board-inner-sidemenu-button' onClick={dbtableinsert}>
+                        게시판 임시데이터 삽입
+                    </button>
+
                 </div>
+
                 <div className='board-inner-boardcontents'>
+
+                    {boarddata && boarddata.datas?.map(item => {
+                        return (
+                            <div key={item.BOARD_NUMBER}>
+                                <div className='board-inner-boardcontents-title'>
+                                    {item.BOARD_NUMBER} <br/>
+                                    {item.BOARD_TITLE}
+                                </div>
+
+                                <div className='board-inner-boardcontents-context'>
+                                    {item.BOARD_TEXT}
+                                </div>
+                            </div>
+                        );
+                    })}
 
                 </div>
 
