@@ -11,17 +11,12 @@ const db = mysql.createPool({
     database: "prj05",
 });
 
-// router.get("/", (req, res) => {
-//     res.send({ db: "db" });
-// })
-
 router.get("/", (req, res) => {
 
-    const sqlQuery = "INSERT INTO requested (rowno) VALUES (2)";
+    const sqlQuery = "CREATE TABLE `prj05`.`BOARD` (`BOARD_NUMBER` INT NOT NULL,`BOARD_TITLE` VARCHAR(100) NOT NULL,`BOARD_CONTEXT` VARCHAR(1000) NOT NULL, PRIMARY KEY (`BOARD_NUMBER`))";
 
-    db.query(sqlQuery, (err, result) => {
-        console.log(err);
-        res.send("success!");
+    db.query(sqlQuery, () => {
+        res.send("TABLE CREATED.");
     });
     
 })

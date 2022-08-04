@@ -16,6 +16,10 @@
 .board-inner-sidemenu {
     width: 25%;
     height: 100%;
+
+    display : flex;
+    justify-content: center;
+    align-items : center;
 }
 .board-inner-boardcontents {
     width: 75%;
