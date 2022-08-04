@@ -1,0 +1,24 @@
+* {
+    border: 1px solid black;
+}
+
+.board-outer {
+    width: 1800px;
+    height: 1200px;
+
+    display : flex;
+    justify-content: center;
+    align-items : center;
+
+    margin: auto;
+}
+
+.board-inner-sidemenu {
+    width: 25%;
+    height: 100%;
+}
+.board-inner-boardcontents {
+    width: 75%;
+    height: 100%;
+}
+
