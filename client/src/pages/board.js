@@ -33,6 +33,14 @@ const Board = () => {
         });
     };
 
+    const dbtablewrite = () => {
+        axios
+        .post('/prj05/cdbw')
+        .then(res => {
+            console.log(res.data);
+        });
+    };
+
     return (
         <>
             <div className='board-outer'>
@@ -49,6 +57,23 @@ const Board = () => {
                     <button className='board-inner-sidemenu-button' onClick={dbtableinsert}>
                         게시판 임시데이터 삽입
                     </button>
+
+                    <div className='board-inner-sidemenu-writeform'>
+                        <input/>
+
+                        <br/>
+
+                        <input/>
+
+                        <br/>
+
+                        <button onClick={dbtablewrite}>
+                            글 작성
+                        </button>
+                    </div>
+
+
+
 
                 </div>
 

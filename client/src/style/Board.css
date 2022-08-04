@@ -23,6 +23,17 @@
     justify-content: center;
     align-items : center;
 }
+.board-inner-sidemenu-writeform {
+    width: 300px;
+    height: 150px;
+
+    display: inline-flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items : center;
+}
+
 .board-inner-sidemenu-button {
     width: 250px;
     height: 50px;
