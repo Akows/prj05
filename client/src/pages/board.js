@@ -9,7 +9,7 @@ const Board = () => {
 
     const dbtablemake = () => {
         axios
-        .post('/prj05/cdbt')
+        .post('/prj05/board/create')
         .then(res => 
             console.log(res.data)
         );
@@ -17,7 +17,7 @@ const Board = () => {
 
     const dbtableselect = () => {
         axios
-        .get('/prj05/cdbs')
+        .get('/prj05/board/select')
         .then(res => {
             setBoarddata(res.data);
             console.log(res.data);
@@ -27,7 +27,7 @@ const Board = () => {
 
     const dbtableinsert = () => {
         axios
-        .post('/prj05/cdbi')
+        .post('/prj05/board/insert')
         .then(res => {
             console.log(res.data);
         });
@@ -35,7 +35,7 @@ const Board = () => {
 
     const dbtablewrite = () => {
         axios
-        .post('/prj05/cdbw')
+        .post('/prj05/board/write')
         .then(res => {
             console.log(res.data);
         });
