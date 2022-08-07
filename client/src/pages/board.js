@@ -21,7 +21,6 @@ const Board = () => {
         .then(res => {
             setBoarddata(res.data);
             console.log(res.data);
-            console.log(boarddata);
         });
     };
 

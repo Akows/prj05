@@ -22,7 +22,8 @@ router.post("/create", (req, res) => {
 
 router.post("/insert", (req, res) => {
 
-    const sqlQuery = "INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) VALUES ('1', '1번 제목', '1번 내용')";
+    const sqlQuery = `INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) 
+                        VALUES ('1', '1번 제목', '1번 내용')`;
 
     db.query(sqlQuery, () => {
         res.send("INSERT COLUMN.");
@@ -45,7 +46,8 @@ router.get("/select", (req, res) => {
 
 router.post("/write", (req, res) => {
 
-    const sqlQuery = "INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) VALUES ('', '', '')";
+    const sqlQuery = `INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) 
+                        VALUES ('', '', '')`;
 
     db.query(sqlQuery, () => {
         res.send("BOARD WRITE.");
