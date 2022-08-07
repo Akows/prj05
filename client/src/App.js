@@ -12,7 +12,8 @@ import Member from './pages/member';
 
 function App() {
 
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
+  const [whoLogin, setWhoLogin] = useState(false);
 
   useEffect(() => {
       // sessionStorage에 Item으로 담겨진 로그인 값을 검증.
@@ -23,7 +24,8 @@ function App() {
       else {
       // 이 값이 있을 경우 useState로 제어하는 isLogin의 값을 true로 전환한다.
       // 하위 컴포넌트에서 로그인 값을 필요로 할 경우, 여기서 전달해주면 된다.
-          setIsLogin(true)
+          setIsLogin(true);
+          setWhoLogin(sessionStorage.getItem('MEMBER_ID'));
       }
   }, [isLogin])
 
@@ -36,7 +38,7 @@ function App() {
           <Route path='/api' element={<Callapi/>}/>
           <Route path='/todolist' element={<Todolist/>}/>
           <Route path='/board' element={<Board/>}/>
-          <Route path='/member' element={<Member/>}/>
+          <Route path='/member' element={<Member isLogin={isLogin} whoLogin={whoLogin}/>}/>
         </Routes>
       </BrowserRouter>
     </>

@@ -1,0 +1,73 @@
+
+
+.memberinfo-outer {
+    width: 100%;
+    height: 800px;
+
+    display: flex;
+    justify-content: center;
+    align-items : center;
+}
+
+.memberinfo-inner {
+    width: 60%;
+    height: 60%;
+
+    margin: auto;
+
+    font-family: 'GIfont';
+
+    border-radius: 20px;
+    background-color: lightgrey;
+}
+.memberinfo-inner > * {
+    margin: auto;
+}
+
+.memberinfo-title {
+    width: 80%;
+    height: 15%;
+}
+
+
+.memberinfo-inputform {
+    width: 80%;
+    height: 65%;
+}
+.memberinfo-write {
+    width: 100%;
+    height: 40px;
+}
+.memberinfo-labelinput {
+    width: 100%;
+    height: 100%;
+}
+.memberinfo-label {
+    width: 30%;
+    height: 80%;
+}
+.memberinfo-input {
+    width: 70%;
+    height: 80%;
+}
+
+
+
+
+
+.memberinfo-submit {
+    width: 80%;
+    height: 15%;
+}
+.memberinfo-button {
+    width: 150px;
+    height: 50px;
+
+    font-family: 'GIfont';
+    font-size: x-large;
+
+    border-radius: 20px;
+}
+.memberinfo-button:active {
+    color: red;
+}

@@ -10,10 +10,30 @@ const db = mysql.createPool({
     database: "prj05",
 });
 
+router.post("/join", (req, res) => {
+
+    const inputid = req.query.MEMBER_ID;
+    const inputpwd = req.query.MEMBER_PW;
+    const inputname = req.query.MEMBER_NAME;
+    const inputemail = req.query.MEMBER_EMAIL;
+
+    const sqlQuery = `INSERT INTO member(MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_JOINDATE)
+                        VALUES (?, ?, ?, ?, sysdate());`;
+
+    const params = [inputid, inputpwd, inputname, inputemail]
+
+    db.query(sqlQuery, params, (err, data) => {
+        if (!err) {
+            res.send(data[0])
+        } 
+        else {
+            res.send(err)
+        }
+    });
+    
+})
+
 router.post("/login", (req, res) => {
-
-    // console.log(`= = = > req : ${util.inspect(req)}`)
-
    	// 로그인 창에서 넘어온 아이디와 비밀번호 값을 변수 선언으로 정리.
     const inputid = req.query.MEMBER_ID;
     const inputpwd = req.query.MEMBER_PW;
