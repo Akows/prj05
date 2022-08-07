@@ -21,35 +21,40 @@ const Menubar = (props) => {
             <div className='menubar-outer menubar-btu'>
                 <div className='menubar-main menubar-btu'>
                     <Link to={'/'}>
-                        <button className='menubar-button'>메인 페이지</button>
+                        <button className='menubar-button-big'>메인 페이지</button>
                     </Link>
                 </div>
 
                 <div className='menubar-menu menubar-btu'>
                     <Link to={'/api'}>
-                        <button className='menubar-button'>API</button>
+                        <button className='menubar-button-big'>API</button>
                     </Link>
                     <Link to={'/todolist'}>
-                        <button className='menubar-button'>TodoList</button>
+                        <button className='menubar-button-big'>TodoList</button>
                     </Link>
                     <Link to={'/board'}>
-                        <button className='menubar-button'>게시판</button>
+                        <button className='menubar-button-big'>게시판</button>
                     </Link>
                 </div>
 
                 <div className='menubar-member menubar-btu'>
                     {props.isLogin ? 
                         <>
-                            <Link to={'/member'}>
-                                <button className='menubar-button'>회원정보</button>
+                            <Link to={'/member'} state={{ value: 'memberinfo' }}>
+                                <button className='menubar-button-small'>회원정보</button>
                             </Link>
 
-                            <button className='menubar-button' onClick={logout}>로그아웃</button>
+                            <button className='menubar-button-small' onClick={logout}>로그아웃</button>
                         </>
                     :
-                        <Link to={'/member'}>
-                            <button className='menubar-button'>로그인</button>
-                        </Link>
+                        <>
+                            <Link to={'/member'} state={{ value: 'memberlogin' }}>
+                                <button className='menubar-button-small'>로그인</button>
+                            </Link>
+                            <Link to={'/member'} state={{ value: 'memberjoin' }}>
+                                <button className='menubar-button-small'>회원가입</button>
+                            </Link>
+                        </>
                     }
                 </div>
             </div>
