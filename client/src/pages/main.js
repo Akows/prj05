@@ -2,7 +2,7 @@ import '../style/Main.css';
 import '../style/global.css';
 
 const Main = () => {
-    
+
     return (
         <>
             <div className='main-outer'>
@@ -15,7 +15,18 @@ const Main = () => {
                             React - Express - MySQL(MariaDB)를 활용한 웹 개발 개인 프로젝트입니다.
                         </h2>
                         <h2>
+                            'REM'은 React - Express - MySQL(MariaDB)의 앞 글자를 딴 준말입니다.
+                        </h2>
+                        <h2>
                             웹 개발에서 가장 대중적으로 사용되는 기술 스택을 활용하여 간단한 웹 사이트를 만들었습니다.
+                        </h2>
+
+                        <h2>
+                            <hr/>
+                        </h2>
+
+                        <h2>
+                            본 프로젝트에서 구현한 기능은 다음과 같습니다.
                         </h2>
                         <h2>
                             회원 기능 (회원가입, 로그인, 로그아웃) / 게시판 기능(웹의 소양 CRUD 기능들)

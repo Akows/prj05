@@ -18,13 +18,12 @@ function App() {
       // sessionStorage에 Item으로 담겨진 로그인 값을 검증.
       // 로그인 값의 이름은 'MEMBER_ID', 이 값이 없을(null) 경우 아무 일도 일어나지 않는다.
       if (sessionStorage.getItem('MEMBER_ID') === null) {
-          console.log('isLogin ?? :: ', isLogin)
+          
       } 
       else {
-      // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
-      // 로그인 상태 변경
+      // 이 값이 있을 경우 useState로 제어하는 isLogin의 값을 true로 전환한다.
+      // 하위 컴포넌트에서 로그인 값을 필요로 할 경우, 여기서 전달해주면 된다.
           setIsLogin(true)
-          console.log('isLogin ?? :: ', isLogin)
       }
   }, [isLogin])
 
