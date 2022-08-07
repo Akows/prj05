@@ -1,0 +1,19 @@
+.main-outer {
+    width: 100%;
+    height: 800px;
+}
+
+.main-inner {
+    width: 100%;
+    height: 100%;
+
+    display : flex;
+    justify-content: center;
+    align-items : center;
+
+    background-color: gainsboro;
+}
+
+.main-inner > p {
+    font-family: 'GIfont';
+}
