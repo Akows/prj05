@@ -1,38 +1,45 @@
-
-import { useEffect, useState } from 'react';
 import '../style/Main.css';
+import '../style/global.css';
 
 const Main = () => {
-
-    const [isLogin, setIsLogin] = useState(false)
-
-    useEffect(() => {
-        if(sessionStorage.getItem('MEMBER_ID') === null){
-        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
-            console.log('isLogin ?? :: ', isLogin)
-        } 
-        else {
-        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
-        // 로그인 상태 변경
-            setIsLogin(true)
-            console.log('isLogin ?? :: ', isLogin)
-        }
-    }, [isLogin])
-
-    const logout = () => {
-        // sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
-        sessionStorage.removeItem('MEMBER_ID')
-        // App 으로 이동(새로고침)
-        document.location.href = '/'
-    }
-
+    
     return (
         <>
-            {isLogin ? '로그인 됨'  : '로그인 되지 않음.'}
+            <div className='main-outer'>
+                <div className='main-inner'>
+                    <p>
+                        <h1>
+                            'REM' Web Project
+                        </h1>
+                        <h2>
+                            React - Express - MySQL(MariaDB)를 활용한 웹 개발 개인 프로젝트입니다.
+                        </h2>
+                        <h2>
+                            웹 개발에서 가장 대중적으로 사용되는 기술 스택을 활용하여 간단한 웹 사이트를 만들었습니다.
+                        </h2>
+                        <h2>
+                            회원 기능 (회원가입, 로그인, 로그아웃) / 게시판 기능(웹의 소양 CRUD 기능들)
+                        </h2>
+                        <h2>
+                            이외에 TodoList와 공공데이터를 이용한 API 호출 기능을 구현해보았습니다.
+                        </h2>
 
-            <hr/>
+                        <h2>
+                            <hr/>
+                        </h2>
 
-            <button onClick={logout}>로그아웃</button>
+                        <h3>
+                            만든 사람 : 이유승
+                        </h3>
+                        <h3>
+                            전화번호 : 010-3629-3686
+                        </h3>
+                        <h3>
+                            이메일 주소 : akows141@gmail.com
+                        </h3>
+                    </p>
+                </div>
+            </div>
         </>
     )
 }
