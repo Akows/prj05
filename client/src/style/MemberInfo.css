@@ -1,73 +1,81 @@
-
+.memberinfo-section {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
 
 .memberinfo-outer {
     width: 100%;
     height: 800px;
 
-    display: flex;
-    justify-content: center;
-    align-items : center;
+    margin: auto;
 }
 
 .memberinfo-inner {
-    width: 60%;
-    height: 60%;
+    width: 80%;
+    height: 100%;
+}
 
-    margin: auto;
+.memberinfo-memberinfoform {
+    width: 800px;
+    height: 550px;
 
     font-family: 'GIfont';
 
+    border: 1px solid black;
     border-radius: 20px;
-    background-color: lightgrey;
+    background-color: lightsteelblue;
 }
-.memberinfo-inner > * {
+
+.memberinfo-memberinfoform-title {
+    width: 80%;
+    height: 20%;
+
+    font-size: x-large;
+
     margin: auto;
 }
 
-.memberinfo-title {
+.memberinfo-memberinfoform-input {
+    width: 80%;
+    height: 50%;
+
+    font-size: larger;
+
+    margin: auto;
+}
+.memberinfo-memberinfoform-idpwinput {
+    width: 500px;
+    height: 50px;
+}
+.memberinfo-memberinfoform-idpwinput > label {
+    width: 80%;
+    height: 80%;
+}
+.memberinfo-memberinfoform-idpwinput > input {
+    width: 80%;
+    height: 80%;
+}
+
+.memberinfo-memberinfoform-submitbutton {
     width: 80%;
     height: 15%;
-}
 
-
-.memberinfo-inputform {
-    width: 80%;
-    height: 65%;
+    margin: auto;
 }
-.memberinfo-write {
-    width: 100%;
-    height: 40px;
-}
-.memberinfo-labelinput {
+.memberinfo-memberinfoform-submitbtu {
     width: 100%;
     height: 100%;
 }
-.memberinfo-label {
-    width: 30%;
-    height: 80%;
-}
-.memberinfo-input {
-    width: 70%;
-    height: 80%;
-}
+.memberinfo-memberinfoform-submitbtu > button {
+    width: 50%;
+    height: 100%;
 
-
-
-
-
-.memberinfo-submit {
-    width: 80%;
-    height: 15%;
-}
-.memberinfo-button {
-    width: 150px;
-    height: 50px;
-
+    border-radius: 30px;
     font-family: 'GIfont';
-    font-size: x-large;
-
-    border-radius: 20px;
+    font-size: larger;
 }
-.memberinfo-button:active {
+
+.memberinfo-memberinfoform-submitbtu > button:active {
     color: red;
 }

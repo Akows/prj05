@@ -16,7 +16,7 @@ function App() {
   const [whoLogin, setWhoLogin] = useState(false);
 
   useEffect(() => {
-      // sessionStorage에 Item으로 담겨진 로그인 값을 검증.
+      // sessionStorage에 Item으로 담겨진 로그인값을 검증.
       // 로그인 값의 이름은 'MEMBER_ID', 이 값이 없을(null) 경우 아무 일도 일어나지 않는다.
       if (sessionStorage.getItem('MEMBER_ID') === null) {
           

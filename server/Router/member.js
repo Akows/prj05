@@ -33,6 +33,23 @@ router.post("/join", (req, res) => {
     
 })
 
+router.get("/info", (req, res) => {
+    const memberid = req.query.MEMBER_ID;
+
+    const sqlQuery = `SELECT * 
+                        FROM member 
+                        WHERE MEMBER_ID = ?;`;
+
+    db.query(sqlQuery, memberid, (err, data) => {
+        if (!err) {
+            res.send(data[0])
+        } 
+        else {
+            res.send(err)
+        }
+    });    
+})
+
 router.post("/login", (req, res) => {
    	// 로그인 창에서 넘어온 아이디와 비밀번호 값을 변수 선언으로 정리.
     const inputid = req.query.MEMBER_ID;
@@ -68,7 +85,8 @@ router.post("/login", (req, res) => {
                 db.query(idpwchecksql, params, (err, data) => {
                     // 에러 발생 여부 확인, 에러가 없으면 데이터를 받아서 반환.
                     if (!err) {
-                        res.send(data[0])
+                        res.send(data[0]);
+                        res.send({ 'SystemMessage': '로그인 성공!' })
                     } 
                     // 에러가 있으면 에러 문장만 보냄.
                     else {
