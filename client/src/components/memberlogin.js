@@ -32,14 +32,12 @@ const MemberLogin = () => {
             } 
 
             else if (res.data.MEMBERID === null) {
-                // id는 있지만, pw 는 다른 경우 userId = null , msg = undefined
-                console.log('======================','입력하신 비밀번호 가 일치하지 않습니다.')
-                alert('입력하신 비밀번호 가 일치하지 않습니다.')
+                alert('잘못된 비밀번호입니다')
 
             } 
             else if (res.data.MEMBERID === inputID) {
                 sessionStorage.setItem('MEMBER_ID', inputID);
-                alert(res.data.SystemMessage);
+                alert('로그인 성공.');
             }
             // 작업 완료 되면 페이지 이동(새로고침)
             document.location.href = '/'

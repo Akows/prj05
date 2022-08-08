@@ -86,7 +86,6 @@ router.post("/login", (req, res) => {
                     // 에러 발생 여부 확인, 에러가 없으면 데이터를 받아서 반환.
                     if (!err) {
                         res.send(data[0]);
-                        res.send({ 'SystemMessage': '로그인 성공!' })
                     } 
                     // 에러가 있으면 에러 문장만 보냄.
                     else {
