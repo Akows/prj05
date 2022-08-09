@@ -84,7 +84,7 @@ const Board = (props) => {
                             {componentvalue === 'view' ? 
                                 <Boardview boarddata={boarddata}/>
                             :
-                                <Boardcreate/>
+                                <Boardcreate isModify={false} whoLogin={whoLogin}/>
                             }
                         </div>
 

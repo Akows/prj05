@@ -10,6 +10,21 @@
 .board-contents-boarddes {
     width: 100%;
 
+    display: inline-flex;
+
+    border: 1px solid black;
+}
+
+.board-contents-boarddesnumber  {
+    width: 15%;
+    border: 1px solid black;
+}
+.board-contents-boarddestitle  {
+    width: 60%;
+    border: 1px solid black;
+}
+.board-contents-boarddeswriter  {
+    width: 25%;
     border: 1px solid black;
 }
 

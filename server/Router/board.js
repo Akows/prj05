@@ -11,28 +11,7 @@ const db = mysql.createPool({
     database: "prj05",
 });
 
-router.post("/create", (req, res) => {
-
-    const sqlQuery = "CREATE TABLE `prj05`.`BOARD` (`BOARD_NUMBER` INT NOT NULL,`BOARD_TITLE` VARCHAR(100) NOT NULL,`BOARD_TEXT` VARCHAR(1000) NOT NULL, PRIMARY KEY (`BOARD_NUMBER`))";
-
-    db.query(sqlQuery, () => {
-        res.send("TABLE CREATED.");
-    });
-})
-
-router.post("/insert", (req, res) => {
-
-    const sqlQuery = `INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) 
-                        VALUES ('1', '1번 제목', '1번 내용')`;
-
-    db.query(sqlQuery, () => {
-        res.send("INSERT COLUMN.");
-    });
-    
-})
-
 router.get("/select", (req, res) => {
-
     const sqlQuery = `SELECT * 
                         FROM prj05.board`;
 
@@ -46,13 +25,28 @@ router.get("/select", (req, res) => {
 
 router.post("/write", (req, res) => {
 
-    const sqlQuery = `INSERT INTO board(BOARD_NUMBER, BOARD_TITLE, BOARD_TEXT) 
-                        VALUES ('', '', '')`;
+    const inputtitle = req.query.BOARD_TITLE;
+    const inputtext = req.query.BOARD_TEXT;
+    const inputmember = req.query.BOARD_WRITE;
 
-    db.query(sqlQuery, () => {
-        res.send("BOARD WRITE.");
+    if (inputmember == undefined) {
+        inputmember = '익명사용자';
+    }
+
+    const sqlQuery = `INSERT INTO board(BOARD_TITLE, BOARD_TEXT, BOARD_WRITE, BOARD_WRITE_TIME)
+                        VALUES (?, ?, ?, sysdate());`;
+
+    const params = [inputtitle, inputtext, inputmember]
+
+    db.query(sqlQuery, params, (err, data) => {
+        if (!err) {
+            res.send({ 'SystemMessage': '글이 정상적으로 작성되었습니다.' })
+        } 
+        else {
+            res.send(err)
+        }
     });
-    
 })
+
 
 module.exports = router;

@@ -72,10 +72,12 @@
     width: 150px;
     height: 80px;
 
+    font-family: 'GIfont';
+    font-size: large;
+
     border-radius: 20px;
     color: white;
     background-color: black;
-
 }
 .board-sidemenu-writebtu:active {
     color: red;
