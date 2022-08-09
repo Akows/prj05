@@ -37,7 +37,7 @@ function App() {
           <Route path='/' element={<Main/>}/>
           <Route path='/api' element={<Callapi/>}/>
           <Route path='/todolist' element={<Todolist/>}/>
-          <Route path='/board' element={<Board/>}/>
+          <Route path='/board' element={<Board isLogin={isLogin} whoLogin={whoLogin}/>}/>
           <Route path='/member' element={<Member isLogin={isLogin} whoLogin={whoLogin}/>}/>
         </Routes>
       </BrowserRouter>
