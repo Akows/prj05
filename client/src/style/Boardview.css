@@ -1,0 +1,21 @@
+.board-contents-board {
+    width: 90%;
+    height: 90%;
+
+    text-align: center;
+
+    border: 1px solid black;
+}
+
+.board-contents-boarddes {
+    width: 100%;
+
+    border: 1px solid black;
+}
+
+.board-inner-boardcontents-title {
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid black;
+}
