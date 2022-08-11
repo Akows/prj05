@@ -1,12 +1,12 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
-import '../style/Boardwrimod.css';
+import '../style/BoardWrite.css';
 
-const Boardwrimod = (props) => {
+const BoardWrite = (props) => {
     const [inputtitle, setInputtitle] = useState('')
     const [inputtext, setInputtext] = useState('')
-    
+
     const checkInputtitle = (e) => {
         setInputtitle(e.target.value)
     }
@@ -51,7 +51,8 @@ const Boardwrimod = (props) => {
                 <button className='board-contents-submitbtn' type='button' onClick={createboard}>글작성</button>
             </div>
         </div>
+
     )
 }
 
-export default Boardwrimod;
+export default BoardWrite;

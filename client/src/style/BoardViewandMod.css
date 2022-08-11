@@ -100,6 +100,11 @@
     width: 50%;
     border: 1px solid black;
 }
+.boardview-contents-title > input {
+    width: 90%;
+    height: 90%;
+    border: 1px solid black;
+}
 .boardview-contents-writer {
     width: 25%;
     border: 1px solid black;
@@ -112,7 +117,7 @@
 
 .boardview-contents-viewertext {
     width: 100%;
-    height: 95%;
+    height: 85%;
 
     border: 1px solid black;
 }
@@ -121,4 +126,30 @@
     height: 85%;
     
     border: 1px solid black;
+}
+.boardview-contents-text > input {
+    width: 90%;
+    height: 90%;
+    border: 1px solid black;
+}
+
+.boardview-contents-submitbutton {
+    width: 100%;
+    height: 10%;
+
+    border: 1px solid black;
+}
+.boardview-contents-submitbtn {
+    width: 150px;
+    height: 80px;
+
+    font-family: 'GIfont';
+    font-size: large;
+
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+}
+.boardview-contents-submitbtn:active {
+    color: red;
 }

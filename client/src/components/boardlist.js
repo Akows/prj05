@@ -1,8 +1,8 @@
 
 import { Link } from 'react-router-dom';
-import '../style/Boardlist.css';
+import '../style/BoardList.css';
 
-const Boardlist = (props) => {
+const BoardList = (props) => {
 
     return (
         <div className='board-contents-board'>
@@ -45,4 +45,4 @@ const Boardlist = (props) => {
     )
 }
 
-export default Boardlist;
+export default BoardList;

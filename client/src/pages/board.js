@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { myContext } from '../App';
 
-import Boardwrimod from '../components/boardwrimod';
+import BoardWrite from '../components/boardwrite';
 import Boardlist from '../components/boardlist';
 
 import '../style/Board.css';
@@ -13,9 +13,6 @@ const Board = () => {
 
     const [boarddata, setBoarddata] = useState([]);
     const [componentvalue, setComponentvalue] = useState('list');
-
-    // const isLogin = loginInfo.isLogin;
-    // const whoLogin = loginInfo.whoLogin;
 
     useEffect(() => {
         axios
@@ -89,7 +86,7 @@ const Board = () => {
                             {componentvalue === 'list' ? 
                                 <Boardlist boarddata={boarddata}/>
                             :
-                                <Boardwrimod isModify={false} whoLogin={loginInfo.whoLogin}/>
+                                <BoardWrite whoLogin={loginInfo.whoLogin}/>
                             }
                         </div>
 

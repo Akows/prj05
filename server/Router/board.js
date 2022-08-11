@@ -27,12 +27,12 @@ router.post("/write", (req, res) => {
 
     const inputtitle = req.query.BOARD_TITLE;
     const inputtext = req.query.BOARD_TEXT;
-    const inputmember = req.query.BOARD_WRITER;
+    const inputwriter = req.query.BOARD_WRITER;
 
     const sqlQuery = `INSERT INTO board(BOARD_TITLE, BOARD_TEXT, BOARD_WRITER, BOARD_WRITE_TIME)
                         VALUES (?, ?, ?, sysdate());`;
 
-    const params = [inputtitle, inputtext, inputmember]
+    const params = [inputtitle, inputtext, inputwriter]
 
     db.query(sqlQuery, params, (err, data) => {
         if (!err) {
@@ -45,7 +45,6 @@ router.post("/write", (req, res) => {
 })
 
 router.delete("/delete", (req, res) => {
-
     const deletetarget = req.query.BOARD_NUMBER;
 
     const sqlQuery = `DELETE 
@@ -62,6 +61,25 @@ router.delete("/delete", (req, res) => {
     });
 })
 
+router.put("/modify", (req, res) => {
+    const boardnumber = req.query.BOARD_NUMBER;
+    const boardtitle = req.query.BOARD_TITLE;
+    const boardtext = req.query.BOARD_TEXT;
 
+    const sqlQuery = `UPDATE board 
+                        SET BOARD_TITLE = ? , BOARD_TEXT = ?
+                        WHERE BOARD_NUMBER = ?;`;
+
+    const params = [boardtitle, boardtext, boardnumber]
+
+    db.query(sqlQuery, params, (err, data) => {
+        if (!err) {
+            res.send({ 'SystemMessage': '글이 수정되었습니다.' })
+        } 
+        else {
+            res.send(err)
+        }
+    });
+})
 
 module.exports = router;

@@ -8,7 +8,7 @@ import Main from './pages/main';
 import Callapi from './pages/callapi';
 import Todolist from './pages/todolist';
 import Board from './pages/board';
-import Boardview from './pages/boardview';
+import BoardViewandMod from './pages/boardviewandmod';
 import Member from './pages/member';
 
 // 전역 상태 관리를 위한 ContextAPI 사용을 위해 createContext()을 사용, 빈 Context를 생성.
@@ -46,7 +46,7 @@ function App() {
               <Route path='/api' element={<Callapi/>}/>
               <Route path='/todolist' element={<Todolist/>}/>
               <Route path='/board' element={<Board/>}/>
-              <Route path='/boardview/:BOARD_NUMBER' element={<Boardview/>}/>
+              <Route path='/boardview/:BOARD_NUMBER' element={<BoardViewandMod/>}/>
               <Route path='/member' element={<Member/>}/>
             </Routes>
         </BrowserRouter>
