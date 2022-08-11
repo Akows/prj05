@@ -1,12 +1,12 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
-import '../style/Boardcreate.css';
+import '../style/Boardwrimod.css';
 
-const Boardcreate = (props) => {
+const Boardwrimod = (props) => {
     const [inputtitle, setInputtitle] = useState('')
     const [inputtext, setInputtext] = useState('')
-
+    
     const checkInputtitle = (e) => {
         setInputtitle(e.target.value)
     }
@@ -21,12 +21,12 @@ const Boardcreate = (props) => {
             params: {
                 'BOARD_TITLE': inputtitle,
                 'BOARD_TEXT': inputtext,
-                'BOARD_WRITE': props.whoLogin
+                'BOARD_WRITER': props.whoLogin
             }
         })
         .then(res => {
             alert(res.data.SystemMessage);
-            
+
             // 작업 완료 되면 페이지 이동(새로고침)
             document.location.href = '/board'
         })
@@ -54,4 +54,4 @@ const Boardcreate = (props) => {
     )
 }
 
-export default Boardcreate;
+export default Boardwrimod;

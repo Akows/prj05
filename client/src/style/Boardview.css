@@ -1,36 +1,124 @@
-.board-contents-board {
-    width: 90%;
-    height: 90%;
+.boardview-section {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
+
+.boardview-outer {
+    width: 100%;
+    height: 1200px;
+
+    margin: auto;
+}
+
+.boardview-inner {
+    width: 80%;
+    height: 100%;
+}
+
+.boardview-boardviewform {
+    width: 1600px;
+    height: 1000px;
+
+    font-family: 'GIfont';
+
+    display: flex;
+
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: lightsteelblue;
+}
+
+.boardview-sidemenu {
+    width: 20%;
+    height: 100%;
+
+    border: 1px solid black;
+}
+
+.boardview-contents {
+    width: 80%;
+    height: 100%;
+
+    border: 1px solid black;
+}
+
+.boardview-sidemenu-title {
+    width: 100%;
+    height: 20%;
 
     text-align: center;
 
     border: 1px solid black;
 }
 
-.board-contents-boarddes {
+.boardview-sidemenu-menubar {
     width: 100%;
+    height: 80%;
+
+    text-align: center;
+
+    border: 1px solid black;
+}
+
+.boardview-sidemenu-writemenu {
+    width: 100%;
+    height: 30%;
+
+    border: 1px solid black;
+}
+
+.boardview-sidemenu-writebtu {
+    width: 150px;
+    height: 80px;
+
+    font-family: 'GIfont';
+    font-size: large;
+
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+}
+.boardview-sidemenu-writebtu:active {
+    color: red;
+}
+
+.boardview-contents-viewerinfo {
+    width: 100%;
+    height: 5%;
 
     display: inline-flex;
 
     border: 1px solid black;
 }
 
-.board-contents-boarddesnumber  {
-    width: 15%;
+.boardview-contents-number {
+    width: 5%;
     border: 1px solid black;
 }
-.board-contents-boarddestitle  {
-    width: 60%;
+.boardview-contents-title {
+    width: 50%;
     border: 1px solid black;
 }
-.board-contents-boarddeswriter  {
+.boardview-contents-writer {
     width: 25%;
     border: 1px solid black;
 }
+.boardview-contents-writetime {
+    width: 20%;
+    border: 1px solid black;
+}
 
-.board-inner-boardcontents-title {
+
+.boardview-contents-viewertext {
     width: 100%;
-    height: 100%;
+    height: 95%;
 
+    border: 1px solid black;
+}
+.boardview-contents-text {
+    width: 85%;
+    height: 85%;
+    
     border: 1px solid black;
 }

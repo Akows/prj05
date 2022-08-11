@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
-import Boardcreate from '../components/boardcreate';
-import Boardview from '../components/boardview';
+import Boardwrimod from '../components/boardwrimod';
+import Boardlist from '../components/boardlist';
 import '../style/Board.css';
 
 // App.js에서 로그인 여부와 로그인 한 사용자의 아이디 값이 넘어옴.
 const Board = (props) => {
 
     const [boarddata, setBoarddata] = useState([]);
-    const [componentvalue, setComponentvalue] = useState('view');
+    const [componentvalue, setComponentvalue] = useState('list');
+
     const isLogin = props.isLogin;
     const whoLogin = props.whoLogin;
 
@@ -38,7 +39,7 @@ const Board = (props) => {
     }, []);
 
     const showboardlist = () => {
-        setComponentvalue('view');
+        setComponentvalue('list');
     };
 
     const showboardcreate = () => {
@@ -81,10 +82,10 @@ const Board = (props) => {
                         </div>
 
                         <div className='board-contents board-section'>
-                            {componentvalue === 'view' ? 
-                                <Boardview boarddata={boarddata}/>
+                            {componentvalue === 'list' ? 
+                                <Boardlist boarddata={boarddata}/>
                             :
-                                <Boardcreate isModify={false} whoLogin={whoLogin}/>
+                                <Boardwrimod isModify={false} whoLogin={whoLogin}/>
                             }
                         </div>
 

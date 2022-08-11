@@ -1,11 +1,9 @@
-
 import '../style/Callapi.css';
 
 const Callapi = () => {
-
-    return (
+	return (
         <>
-            Callapi
+
         </>
     )
 }
