@@ -99,8 +99,28 @@ router.post("/login", (req, res) => {
             res.send(err)
         }
     })
+})
 
-    
+router.put("/infomodify", (req, res) => {
+    const mamberNumber = req.query.MEMBER_NUMBER;
+    const memberId = req.query.MEMBER_ID;
+    const mamberName = req.query.MEMBER_NAME;
+    const mamberEmail = req.query.MEMBER_EMAIL;
+
+    const sqlQuery = `UPDATE member 
+                        SET MEMBER_ID = ?, MEMBER_NAME = ?, MEMBER_EMAIL = ?
+                        WHERE MEMBER_NUMBER = ?;`;
+
+    const params = [memberId, mamberName, mamberEmail, mamberNumber]
+
+    db.query(sqlQuery, params, (err, data) => {
+        if (!err) {
+            res.send({ 'SystemMessage': '회원정보가 수정되었습니다.' })
+        } 
+        else {
+            res.send(err)
+        }
+    });
 })
 
 module.exports = router;
