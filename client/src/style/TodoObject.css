@@ -1,0 +1,44 @@
+.todolist-listobject {
+    width: 450px;
+    height: 70px;
+
+    margin: 5px;
+
+    display: flex;
+}
+
+.todolist-listtext {
+    width: 70%;
+    height: 100%;
+
+    display: flex;
+
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+.todolist-important {
+    width: 15%;
+    height: 100%;
+
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+.todolist-delete {
+    width: 15%;
+    height: 100%;
+
+    border: 1px black solid;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+.todolist-listobjectimg {
+    width: 32px;
+    height: 32px;
+}

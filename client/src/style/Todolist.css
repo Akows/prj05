@@ -1,0 +1,47 @@
+.todolist-section {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
+
+.todolist-outer {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
+
+.todolist-inner {
+    width: 1650px;
+    height: 1250px;
+}
+
+.todolist-contentsbox {
+    width: 90%;
+    height: 90%;
+
+    border-radius: 25px;
+
+    background-color: lightsteelblue;
+}
+
+.todolist-listouter {
+    width: 100%;
+    height: 92.5%;
+
+    display: flex;
+}
+
+.todolist-menu {
+    width: 20%;
+    height: 100%;
+
+}
+
+
+
+.todolist-contents {
+    width: 80%;
+    height: 100%;
+
+    border: 1px solid black;
+}

@@ -44,7 +44,7 @@ const Menubar = () => {
                     {loginInfo.isLogin ? 
                         <>
                             <Link to={'/member'} state={{ value: 'memberinfo' }}>
-                                <button className='menubar-button-small'>회원정보</button>
+                                <button className='menubar-button-small'>사용자 : {loginInfo.whoLogin}</button>
                             </Link>
 
                             <button className='menubar-button-small' onClick={logout}>로그아웃</button>
