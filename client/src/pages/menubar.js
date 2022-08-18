@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { myContext } from '../App';
 
 import '../style/Menubar.css';
-import '../style/global.css';
+import '../style/GlobalStyle.css';
 
 // 최상단 App.js에서 로그인 여부가 검증되어 결과값으로 전달되어 옴.
 // 결과값의 이름은 'isLogin'.

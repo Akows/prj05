@@ -1,19 +1,42 @@
-.main-outer {
+.main-pagebackground {
     width: 100%;
-    height: 800px;
-}
-
-.main-inner {
-    width: 100%;
-    height: 100%;
-
-    display : flex;
-    justify-content: center;
-    align-items : center;
+    height: 100vh;
 
     background-color: gainsboro;
 }
+.main-pageinner {
+    width: 90%;
+    height: 90%;
 
-.main-text {
-    font-family: 'GIfont';
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.main-projectexplain {
+    width: 90%;
+    height: 90%;
+}
+
+.main-explainicon {
+    width: 100%;
+    height: 40%;
+}
+.main-iconreact {
+    width: 350px;
+    height: 300px;
+}
+.main-iconexpress {
+    width: 500px;
+    height: 290px;
+}
+.main-iconmariadb {
+    width: 380px;
+    height: 240px;
+}
+
+.main-explaintext {
+    width: 100%;
+    height: 60%;
+
+    text-align: center;
 }
