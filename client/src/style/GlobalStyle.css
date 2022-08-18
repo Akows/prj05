@@ -18,3 +18,40 @@
     justify-content: center;
     align-items: center;
 }
+
+
+
+/* CSS 공부용도로 작성해둔 코드 */
+
+/* 내부 아이템 세로 정렬 */
+#Content-horizontal {
+
+    /* 내부 아이템을 세로로 배치 */
+    display: inline-flex;
+
+    /* 내부 아이템을 세로 기준 중앙으로 배치 */
+    align-items: center;
+
+}
+
+/* 내부 아이템 가로 정렬 */
+#Content-verticality {
+
+    /* 내부 아이템을 가로로 배치 */
+    display: flex;
+
+    /* 내부 아이템을 가로 기준 중앙으로 배치 */
+    justify-content: center;
+
+}
+
+/* 내부 아이템의 배치 방향 */
+#Content-direction {
+
+    /* 내부 아이템을 가로 왼쪽-> 오른쪽으로 배치 */
+    flex-direction: row;
+
+    /* 내부 아이템을 세로 위쪽-> 아래쪽으로 배치 */
+    flex-direction: column;
+    
+}
