@@ -1,26 +1,26 @@
-.login-pagebackground {
+.join-pagebackground {
     width: 100%;
     height: 60vh;
 
     background-color: gainsboro;
 }
-.login-pageinner {
+.join-pageinner {
     width: 90%;
     height: 90%;
 
     border: 1px solid black;
     border-radius: 15px;
 }
-.login-formarea {
+.join-formarea {
     width: 90%;
     height: 90%;
 }
 
-.login-title {
+.join-title {
     width: 100%;
     height: 15%;
 }
-.login-input {
+.join-input {
     width: 100%;
     height: 85%;
 
@@ -29,7 +29,7 @@
     flex-direction: column;
 }
 
-.login-inputtag {
+.join-inputtag {
     width: 400px;
     height: 50px;
 
@@ -39,7 +39,7 @@
     border-radius: 10px;
 }
 
-.login-buttontag {
+.join-buttontag {
     width: 100px;
     height: 50px;
 
@@ -50,7 +50,7 @@
     background-color: black;
     color: white;
 }
-.login-buttontag:active {
+.join-buttontag:active {
     background-color: white;
     color: black;
 }
