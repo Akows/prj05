@@ -32,6 +32,8 @@
 
     border-radius: 30px;
 
+    font-family: 'GIfont';
+
     color: white;
     background-color: black;
 }
@@ -41,6 +43,8 @@
     height: 80px;
 
     border-radius: 30px;
+
+    font-family: 'GIfont';
 
     color: white;
     background-color: black;
