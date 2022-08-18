@@ -8,6 +8,8 @@ const MemberLogin = () => {
     const [inputID, setInputID] = useState('')
     const [inputPW, setInputPW] = useState('')
 
+    const [loginStatus, setLoginStatus] = useState(false);
+
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
     const handleInputId = (e) => {
         setInputID(e.target.value)
@@ -27,22 +29,30 @@ const MemberLogin = () => {
             }
         })
         .then(res => {
-            if (res.data.MEMBERID === undefined) {
-                alert(res.data.SystemMessage);
-            } 
+            alert(res.data.SystemMessage);
+            setLoginStatus(true);
+            console.log('loginStatus, ', loginStatus);
+            // if (res.data.MEMBERID === undefined) {
+            //     alert(res.data.SystemMessage);
+            // } 
 
-            else if (res.data.MEMBERID === null) {
-                alert('잘못된 비밀번호입니다')
+            // else if (res.data.MEMBERID === null) {
+            //     alert('잘못된 비밀번호입니다')
 
-            } 
-            else if (res.data.MEMBERID === inputID) {
-                sessionStorage.setItem('MEMBER_ID', inputID);
-                alert('로그인 성공.');
-            }
-            // 작업 완료 되면 페이지 이동(새로고침)
-            document.location.href = '/'
+            // } 
+            // else if (res.data.MEMBERID === inputID) {
+            //     sessionStorage.setItem('MEMBER_ID', inputID);
+            //     alert('로그인 성공.');
+            // }
+            // // 작업 완료 되면 페이지 이동(새로고침)
+            // document.location.href = '/'
+
+
         })
-        .catch()
+        .catch(res => {
+            alert(res.data.SystemMessage);
+            setLoginStatus(false);
+        })
     }
 
     return (
