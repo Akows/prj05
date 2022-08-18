@@ -3,6 +3,7 @@ const router = express.Router();
 const mysql = require("mysql");
 
 const jwt = require("jsonwebtoken");
+const e = require("express");
 
 const db = mysql.createPool({
     host: "localhost",
@@ -131,27 +132,30 @@ router.post("/login", (req, res) => {
 //     })
 // })
 
+// 회원가입 기능
 router.post("/join", (req, res) => {
 
+    // 프론트단에서 입력받은 회원정보를 각 변수에 담는다.
     const inputid = req.query.MEMBER_ID;
     const inputpwd = req.query.MEMBER_PW;
     const inputname = req.query.MEMBER_NAME;
     const inputemail = req.query.MEMBER_EMAIL;
 
+    // MariaDB에서 사용할 쿼리문을 작성한다.
     const sqlQuery = `INSERT INTO member(MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_JOINDATE)
                         VALUES (?, ?, ?, ?, sysdate());`;
 
+    // 쿼리문에 사용될 변수가 많으므로 하나의 배열에 삽입한다. 배열의 순서는 쿼리문에 삽입될 요소의 순서를 맞춘다.
     const params = [inputid, inputpwd, inputname, inputemail]
 
+    // 준비된 변수들로 작업을 실행한다.
     db.query(sqlQuery, params, (err, data) => {
-        if (!err) {
-            res.send(data[0])
-        } 
-        else {
+        // 회원가입 기능의 경우 작업이 정상완료되었다면 프론트단으로 다시 넘겨줄 것이 없다.
+        // 따라서 에러가 발생했을 경우에만 에러 문구를 프론트단으로 넘겨주는 코드를 작성한다.
+        if (err) {
             res.send(err)
         }
     });
-    
 })
 
 router.get("/info", (req, res) => {
