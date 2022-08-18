@@ -1,0 +1,20 @@
+/* 여러 페이지 혹은 컴포넌트에서 동일하게 사용될 CSS 속성들이 사용될 스타일 시트 */
+/* 여러 페이지 혹은 컴포넌트에서 동일하게 사용될 CSS 속성들이 사용될 스타일 시트 */
+
+/* 원신 폰트 설정 */
+@font-face {
+    font-family: 'GIfont';
+    src: url('../asset/fonts/ja-jp.ttf') format('truetype');
+}
+
+/* 원신 폰트 사용 */
+.gifont {
+    font-family: 'GIfont';
+}
+
+/* 하위 요소를 상위 요소 기준 정 가운데 배치하는 CSS속성 */
+.setcenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
