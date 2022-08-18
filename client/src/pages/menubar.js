@@ -23,7 +23,7 @@ const Menubar = () => {
         <>
             <div className='menubar-outer menubar-btu'>
                 <div className='menubar-main menubar-btu'>
-                    <Link to={'/'}>
+                    <Link to={'/main'}>
                         <button className='menubar-button-big'>메인 페이지</button>
                     </Link>
                 </div>
