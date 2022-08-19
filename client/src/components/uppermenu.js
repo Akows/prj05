@@ -12,7 +12,9 @@ const Uppermenu = () => {
 
     const logout = () => {
         localStorage.removeItem('token');
-        
+        localStorage.removeItem('loginstatus');
+        localStorage.removeItem('whologin');
+        document.location.href = '/'
     }
 
     return (

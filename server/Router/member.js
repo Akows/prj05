@@ -11,6 +11,7 @@ const db = mysql.createPool({
     database: 'prj05',
 });
 
+// JWT 토큰 인증 메소드
 const verifyJWT = (req, res, next) => {
     const token = req.headers["x-access-token"];
 
@@ -30,8 +31,10 @@ const verifyJWT = (req, res, next) => {
     }
 };
 
+// 로그인 유효성 검사 (JWT 방식)
+// JWT 토큰 인증 메소드 verifyJWT을 사용하는 매개체에 불과하다.
 router.get("/auth", verifyJWT, (req, res) => {
-    res.send('인증되었습니다.');
+    res.json({ tkauth: true, SystemMessage: '인증에 성공하였습니다.' });
 });
 
 // 로그인 기능 (JWT 방식)
@@ -61,9 +64,10 @@ router.post("/login", (req, res) => {
                 const id = result[0].MEMBER_ID;
                 const token = jwt.sign({id}, "jwtSecret", 
                 {
-                    expiresIn: 300,
+                    // 토큰의 유효기간은 1시간
+                    expiresIn: '1h',
                 });
-                res.json({ auth: true, token: token, result: result, SystemMessage: '로그인 작업이 완료되었습니다.'});
+                res.json({ auth: true, token: token, SystemMessage: '로그인 작업이 완료되었습니다.'});
             } 
             // 결과값의 길이가 0과 같거나 작다면 반환되는 값이 존재하지 않는다는 뜻이니 작업을 중단한다.
             else {
