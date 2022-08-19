@@ -10,6 +10,7 @@ const Login = (props) => {
     const [inputID, setInputID] = useState('');
     const [inputPW, setInputPW] = useState('');
 
+
     // 로그인 Event.
     const loginEvent = () => {
         // 정보 입력란이 하나라도 비어있으면 경고를 출력하고 기능 정지.
@@ -25,9 +26,16 @@ const Login = (props) => {
                 }
             })
             // 작업이 완료되었을 경우, 로그인 값과 사용자 이름을 상단 App으로 전송.
-            .then(() => {
-                alert('로그인 완료');
-                props.sendLoginStatus(true);
+            .then(res => {
+                // 인증이 실패한 경우
+                if (!res.data.auth) {
+                    props.sendLoginStatus(false);
+                }
+                // 인증이 성공한 경우
+                else {
+                    localStorage.setItem('token', res.data.token);
+                    props.sendLoginStatus(true);
+                }
             })
             // 에러가 발생하였을 경우, 로그인 값을 상단 App으로 전송
             .catch(res => {

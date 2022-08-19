@@ -11,28 +11,28 @@ const db = mysql.createPool({
     database: 'prj05',
 });
 
-// const verifyJWT = (req, res, next) => {
-//     const token = req.headers["x-access-token"];
+const verifyJWT = (req, res, next) => {
+    const token = req.headers["x-access-token"];
 
-//     if (!token) {
-//         res.send('토큰이 존재하지 않습니다.');
-//     }
-//     else {
-//         jwt.verify(token, "jwtSecret", (err, decoded) => {
-//             if(err) {
-//                 res.json({ auth: false, SystemMessage: '인증이 실패하였습니다.' });
-//             }
-//             else {
-//                 req.userId = decoded.id;
-//                 next();
-//             }
-//         })
-//     }
-// };
+    if (!token) {
+        res.send('토큰이 존재하지 않습니다.');
+    }
+    else {
+        jwt.verify(token, "jwtSecret", (err, decoded) => {
+            if(err) {
+                res.json({ auth: false, SystemMessage: '인증이 실패하였습니다.' });
+            }
+            else {
+                req.userId = decoded.id;
+                next();
+            }
+        })
+    }
+};
 
-// router.get("/auth", verifyJWT, (req, res) => {
-//     res.send('인증되었습니다.');
-// });
+router.get("/auth", verifyJWT, (req, res) => {
+    res.send('인증되었습니다.');
+});
 
 // 로그인 기능 (JWT 방식)
 router.post("/login", (req, res) => {
@@ -50,7 +50,7 @@ router.post("/login", (req, res) => {
     db.query(idchecksql, inputid, (err, result) => {
         // DB와 통신 중 에러가 발생했다면 모든 작업을 중단하고 에러 내용을 프론트로 전송한다.
         if (err) {
-            res.send({ 'SystemMessage': err });
+            res.json({ auth: false, SystemMessage: '에러가 발생하였습니다.'});
         }
         else {
             // 에러가 발생하지 않았다면 회신되는 내용을 받아 아래 코드를 실행한다.
@@ -63,13 +63,11 @@ router.post("/login", (req, res) => {
                 {
                     expiresIn: 300,
                 });
-                res.json({ auth: true, token: token, result: result});
-
-                // res.send({ SystemMessage : '성공적으로 로그인하였습니다.' });
+                res.json({ auth: true, token: token, result: result, SystemMessage: '로그인 작업이 완료되었습니다.'});
             } 
             // 결과값의 길이가 0과 같거나 작다면 반환되는 값이 존재하지 않는다는 뜻이니 작업을 중단한다.
             else {
-                res.send({ SystemMessage: '존재하지 않는 계정입니다.' });
+                res.json({ auth: false, SystemMessage: '존재하지 않는 계정입니다.'});
             }
         }
     })

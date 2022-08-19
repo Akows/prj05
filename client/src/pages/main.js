@@ -4,8 +4,20 @@ import '../style/GlobalStyle.css';
 import reacticon from '../asset/icon/React-icon.svg.png';
 import expressicon from '../asset/icon/png-transparent-node-js-express-thumbnail.png';
 import mariadbicon from '../asset/icon/mariadb_logo_icon_168996.png';
+import axios from 'axios';
 
 const Main = () => {
+
+    const userAuth = () => {
+        axios.get('/prj05/member/auth', {
+            headers: {
+                "x-access-token": localStorage.getItem('token'),
+            }})
+            .then((res) => {
+                console.log(res);
+            })
+    }
+
 
     return (
         <>
@@ -54,6 +66,9 @@ const Main = () => {
                                 이메일 주소 : akows141@gmail.com
                             </h3>
                         </div>
+
+                    <button onClick={userAuth}>인증테스트</button>
+
                     </div>
                 </div>
             </div>
