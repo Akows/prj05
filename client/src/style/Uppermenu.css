@@ -1,0 +1,35 @@
+.menubar-upbarbackground {
+    width: 100%;
+    height: 100px;
+
+    background-color: gray;
+}
+
+.menubar-mainbtuarea {
+    width: 20%;
+    height: 100%;
+}
+.menubar-menubtuarea {
+    width: 60%;
+    height: 100%;
+}
+.menubar-memberbtuarea {
+    width: 20%;
+    height: 100%;
+}
+
+.menubar-buttontag{
+    width: 150px;
+    height: 60px;
+
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+
+    background-color: black;
+    color: white;
+}
+.menubar-buttontag:active {
+    background-color: white;
+    color: black;
+}
