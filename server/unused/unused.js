@@ -65,3 +65,29 @@
 //         }
 //     })
 // })
+
+
+// 프론트엔드 시트
+// 프론트엔드 시트
+
+// sessionStorage 방식 로그인 기능.
+// 로그인 방식을 JWT로 변경하면서 더 이상 사용하지 않음.
+//   // 로그인 여부 값과 로그인 한 사용자 이름을 관리하기 위한 isLogin / whoLogin 변수를 useState로 관리.
+//   const [isLogin, setIsLogin] = useState('');
+//   const [whoLogin, setWhoLogin] = useState('');
+
+//   React.useEffect(() => {
+//     // 웹이 실행되면 가장 먼저 isLogin을 false로 초기화.
+//         setIsLogin(false);
+
+//     // sessionStorage에 Item으로 담겨진 로그인값을 검증.
+//     // 로그인 값의 이름은 'MEMBER_ID', 이 값이 없을(null) 경우 whoLogin의 값을 '익명사용자'로 set.
+//     if (sessionStorage.getItem('MEMBER_ID') === null) {
+//         setWhoLogin('익명사용자');
+//     } 
+//     else {
+//     // 이 값이 있을 경우 useState로 제어하는 isLogin의 값을 true로 전환하고 whoLogin을 로그인 한 유저의 ID값으로 변경한다.
+//         setIsLogin(true);
+//         setWhoLogin(sessionStorage.getItem('MEMBER_ID'));
+//     }
+// }, [])
