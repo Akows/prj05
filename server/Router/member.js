@@ -105,7 +105,10 @@ router.post("/login", (req, res) => {
                         const accessToken = createTokens(result[0]);
                         
                         res.cookie("access-token", accessToken, {
+                            // cookie의 유효기간 설정.
                             maxAge: 60 * 60 * 24 * 30 * 1000,
+                            // 스크립트에 액세스 가능 설정. (허용 안함 (Http만))
+                            httpOnly: true,
                         })
 
                         res.json({ SystemMassage: "로그인 완료!" });
