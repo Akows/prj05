@@ -38,23 +38,22 @@ const Join = () => {
             }
             // 그렇지 않으면 회원가입 절차를 실행.
             else {
-                axios.post('/prj05/member/join', null, {
-                    params: {
-                        'MEMBER_ID': inputID,
-                        'MEMBER_PW': inputPW,
-                        'MEMBER_NAME': inputName,
-                        'MEMBER_EMAIL': inputEmail
-                    }
+                axios.post('/prj05/member/register', {
+                    'memberid': inputID,
+                    'memberpwd': inputPW,
+                    'membername': inputName,
+                    'memberemail': inputEmail
                 })
                 // 작업이 완료되거나 완료되지 않았을 경우 알림 문구를 출력한다.
                 // 이후 로그인 페이지로 이동하거나, 회원가입 페이지를 새로고침한다.
                 .then(res => {
-                    console.log(res);
-                    alert('회원가입이 완료되었습니다.');
+                    console.log(res.data.SystemMassage);
+                    alert(res.data.SystemMassage);
                     document.location.href = '/';
                 })
                 .catch(res => {
-                    alert('에러가 발생하였습니다.');
+                    console.log(res.data.SystemMassage);
+                    alert(res.data.SystemMassage);
                     document.location.href = '/join';
                 })
             }
