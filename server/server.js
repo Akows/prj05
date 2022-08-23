@@ -4,6 +4,7 @@ const app = express();
 const member = require("./Router/member");
 const board = require("./Router/board");
 
+app.use(express.json());
 app.use("/prj05/member", member);
 app.use("/prj05/board", board);
 
