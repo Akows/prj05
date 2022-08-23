@@ -104,6 +104,7 @@ router.post("/login", (req, res) => {
                         // JWT.js에 만들어둔 토큰 생성 함수를 실행한다.
                         const accessToken = createTokens(result[0]);
                         
+                        // 생성된 토큰을 cookie에 담아 전송한다.
                         res.cookie("access-token", accessToken, {
                             // cookie의 유효기간 설정.
                             maxAge: 60 * 60 * 24 * 30 * 1000,
@@ -111,6 +112,7 @@ router.post("/login", (req, res) => {
                             httpOnly: true,
                         })
 
+                        // 그리고 완료 문구도 전송한다.
                         res.json({ SystemMassage: "로그인 완료!" });
                     }
                 })
@@ -127,6 +129,9 @@ router.post("/login", (req, res) => {
     });
 })
 
+// 토큰 유효성 검사 기능
+// 기본적으로 JWT.js에 구현한 validateToken 함수를 실행한다.
+// 유효성이 인증될 경우, 문구를 전송한다.
 router.get("/profile", validateToken, (req, res) => {
     res.json("profile");
 })
