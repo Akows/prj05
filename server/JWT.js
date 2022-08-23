@@ -4,6 +4,7 @@ const { sign, verify } = require("jsonwebtoken");
 // JWT를 생성하는 함수.
 // member 정보를 매개변수로 받아 토큰을 생성하여 반환한다.
 const createTokens = (user) => {
+    // 토큰을 생성, accessToken 변수에 담고 "jwtsecretplschange"의 이름으로 서버에 남겨둔다?
     const accessToken = sign({ memberid: user.MEMBER_ID, memberpw: user.MEMBER_PW }, "jwtsecretplschange");
     
     return accessToken;
