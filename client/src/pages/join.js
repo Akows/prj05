@@ -40,7 +40,7 @@ const Join = () => {
             else {
                 axios.post('/prj05/member/register', {
                     'memberid': inputID,
-                    'memberpwd': inputPW,
+                    'memberpw': inputPW,
                     'membername': inputName,
                     'memberemail': inputEmail
                 })

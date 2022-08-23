@@ -74,7 +74,7 @@ const Login = (props) => {
         else {
             axios.post('/prj05/member/login', {
                 'memberid': inputID,
-                'memberpwd': inputPW
+                'memberpw': inputPW
             })
             .then(res => {
                 console.log(res.data.SystemMassage);
