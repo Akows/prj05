@@ -9,4 +9,24 @@ const createTokens = (user) => {
         return accessToken;
 };
 
-module.exports = { createTokens };
+// JWT를 검증하는 함수.
+const validateToken = (req, res, next) => {
+    const accessToken = req.cookies["access-token"];
+
+    if (!accessToken) 
+        return res.status(400).json({ SystemMassage: "유효하지 않은 사용자입니다."});
+
+    try {
+        const validToken = verify(accessToken, "jwtsecretplschange");
+
+        if (validToken) {
+            req.authenticated = true;
+            return next();
+        }
+    }
+    catch (err) {
+        return res.status(400).json({ SystemMassage: err });
+    }
+};
+
+module.exports = { createTokens, validateToken };

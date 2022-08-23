@@ -11,7 +11,7 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 
-const { createTokens } = require("../JWT");
+const { createTokens, validateToken } = require("../JWT");
 
 // DB에 접속하기 위한 정보들을 mysql 모듈을 이용하여 변수에 담아준다.
 const db = mysql.createPool({
@@ -113,7 +113,7 @@ router.post("/login", (req, res) => {
                 })
                 // 검증 작업에 에러가 발생했을 경우 아래 코드를 실행하고 작동을 중지한다.
                 .catch(() => {
-
+                    res.json({ SystemMassage: "비밀번호 검증작업에서 에러가 발생하였습니다." });
                 })
             }
         }
@@ -124,7 +124,7 @@ router.post("/login", (req, res) => {
     });
 })
 
-router.post("/profile", (req, res) => {
+router.get("/profile", validateToken, (req, res) => {
     res.json("profile");
 })
 
