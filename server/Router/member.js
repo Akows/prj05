@@ -1,4 +1,4 @@
-// 세부 서버코드 파일
+// 회원 기능의 서버코드 파일
 
 // 마찬가지로 express 모듈을 불러와주고, Router를 사용할 것이기 때문에 express의 Router도 불러와준다.
 // MariaDB(MySQL)을 사용하고 있으므로 mysql 모듈도 설치하여 불러와준다.
