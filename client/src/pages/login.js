@@ -79,6 +79,10 @@ const Login = (props) => {
             .then(res => {
                 console.log(res.data.SystemMassage);
                 alert(res.data.SystemMassage);
+
+                props.sendLoginStatus(true);
+                props.sendLoginID(res.data.loginuser);
+                props.sendCookie("access-token");
             })
             .catch(res => {
                 console.log(res.data.SystemMassage);

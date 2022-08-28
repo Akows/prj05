@@ -12,6 +12,7 @@ import BoardViewandMod from './pages/boardviewandmod';
 import Login from './pages/login';
 import Join from './pages/join';
 import MemberInfo from './components/memberinfo';
+import { useCookies } from 'react-cookie';
 
 // 전역 상태 관리를 위한 ContextAPI 사용을 위해 createContext()을 사용, 빈 Context를 생성.
 export const myContext = createContext('defaultvalue');
@@ -27,17 +28,24 @@ function App() {
     // 로그인한 유저의 아이디 값을 제어하는 whoIsLogin.
     const [whoIsLogin, setwhoIsLogin] = useState('비로그인사용자');
 
+    // 로그인한 유저의 쿠키 값을 제어하는 cookies.
+    const [cookies, setCookie, removeCookie] = useCookies(['쿠키 이름']);
+
   // Login 페이지에서 App으로 로그인 값을 넘겨줄 함수.
   const receiveLoginStatus = (data) => {
     console.log('isLogin : ', data);
     setLoginStatus(data);
-    localStorage.setItem('loginstatus', loginStatus);
   }
   // Login 페이지에서 App으로 사용자 이름을 넘겨줄 함수.
   const receiveLoginID = (data) => {
     console.log('whoLogin : ', data);
     setwhoIsLogin(data);
-    localStorage.setItem('whologin', whoIsLogin);
+  }
+
+  // Login 페이지에서 App으로 쿠키 값을 넘겨줄 함수.
+  const receiveCookie = (data) => {
+    console.log('Cookie : ', data);
+    setCookie(data);
   }
 
   return (
@@ -51,7 +59,7 @@ function App() {
             <Route path='/todolist' element={<Todolist/>}/>
             <Route path='/board' element={<Board/>}/>
             <Route path='/boardview/:BOARD_NUMBER' element={<BoardViewandMod/>}/>
-            <Route path='/login' element={<Login sendLoginStatus={receiveLoginStatus} sendLoginID={receiveLoginID}/>}/>
+            <Route path='/login' element={<Login sendLoginStatus={receiveLoginStatus} sendLoginID={receiveLoginID} sendCookie={receiveCookie}/>}/>
             <Route path='/join' element={<Join/>}/>
             <Route path='/info' element={<MemberInfo/>}/>
           </Routes>
