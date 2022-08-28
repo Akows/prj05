@@ -17,13 +17,15 @@ import MemberInfo from './components/memberinfo';
 export const myContext = createContext('defaultvalue');
 
 function App() {
+  // 로그인 페이지에서 로그인을 완료하면 로그인 페이지는 로그인 값을 받아 App 페이지로 이동.
+  // App 페이지는 로그인 값이 필요한 페이지 혹은 컴포넌트로 값을 전달해준다.
+  // 따라서 로그인 값을 제어할 변수를 useState로 선언하여 제어한다.
 
-  // 로그인 값은 최상단 App에서 제어하면서 필요한 컴포넌트로 내려보내주어야 함.
-  // 따라서 로그인 값을 제어할 변수를 useState로 생성.
-  // 로그인한 유저의 아이디를 제어할 whoIsLogin.
-  const [whoIsLogin, setwhoIsLogin] = useState('비로그인사용자');
-  // 로그인 상태를 제어할 loginStatus.
-  const [loginStatus, setLoginStatus] = useState(false);
+    // 로그인 상태를 제어하는 loginStatus.
+    const [loginStatus, setLoginStatus] = useState(false);
+
+    // 로그인한 유저의 아이디 값을 제어하는 whoIsLogin.
+    const [whoIsLogin, setwhoIsLogin] = useState('비로그인사용자');
 
   // Login 페이지에서 App으로 로그인 값을 넘겨줄 함수.
   const receiveLoginStatus = (data) => {

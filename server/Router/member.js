@@ -135,7 +135,7 @@ router.post("/login", (req, res) => {
                         })
 
                         // 그리고 완료 문구도 전송한다.
-                        res.json({ SystemMassage: "로그인 완료!" });
+                        res.json({ SystemMassage: "로그인 완료!", loginuser: result[0].MEMBER_ID });
                     }
                 })
                 // 검증 작업에 에러가 발생했을 경우 아래 코드를 실행하고 작동을 중지한다.
