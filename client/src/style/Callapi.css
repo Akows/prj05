@@ -1,46 +1,65 @@
-.callapi-section {
-    display : flex;
-    justify-content: center;
-    align-items : center;
-}
-
-.callapi-outer {
-    border: 1px solid black;
-}
-
-.callapi-inner {
-    width: 1650px;
-    height: 1250px;
-
-    border: 1px solid black;
-}
-
-.callapi-contentsbox {
-    width: 90%;
-    height: 90%;
-
-    border: 1px solid black;
-}
-
-.callapi-apiouter {
+.capi-pagebackground {
     width: 100%;
-    height: 92.5%;
+    height: 85vh;
 
-    display: flex;
+    background-color: beige;
+}
+.capi-pageinner {
+    width: 95%;
+    height: 95%;
 
     border: 1px solid black;
+    border-radius: 15px;
+}
+.capi-capiarea {
+    width: 95%;
+    height: 95%;
 }
 
-.callapi-apimenu {
+.capi-sidebar {
     width: 20%;
     height: 100%;
 
     border: 1px solid black;
+    border-radius: 15px;
 }
 
-.callapi-apicontents {
+.capi-sideutil {
+    width: 100%;
+    height: 30%;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+
+.capi-contents {
     width: 80%;
     height: 100%;
 
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.capi-addcapi {
+    width: 90%;
+    height: 12%;
+
     border: 1px solid black;
+    border-radius: 15px;
+}
+.capi-showcapi {
+    width: 90%;
+    height: 63%;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.capi-pagenation {
+    width: 90%;
+    height: 15%;
+
+    border: 1px solid black;
+    border-radius: 15px;
 }

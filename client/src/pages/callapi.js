@@ -3,27 +3,33 @@ import '../style/Callapi.css';
 const Callapi = () => {
 	return (
         <>
-            <div className='callapi-outer callapi-section'>
-                <div className='callapi-inner callapi-section'>
-                    
-                    <div className='callapi-contentsbox'>
+            <div className='capi-pagebackground setcenter'>
+                <div className='capi-pageinner setcenter'>
+                    <div className='capi-capiarea setcenter gifont'>
 
-                        <h1>공공데이터 API</h1>
+                        <div className='capi-sidebar'>
 
-                        <div className='callapi-apiouter'>
+                            <h1>공공데이터 API 호출</h1>
 
-                            <div className='callapi-apimenu'>
-                                메뉴
-                            </div>
+                            <div className='capi-sideutil'>
 
-                            <div className='callapi-apicontents'>
-                                내용
                             </div>
 
                         </div>
 
-                    </div>
+                        <div className='capi-contents'>
 
+                            <div className='capi-addcapi'>
+
+                            </div>
+                            <div className='capi-showcapi'>
+
+                            </div>
+                            <div className='capi-pagenation'>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
