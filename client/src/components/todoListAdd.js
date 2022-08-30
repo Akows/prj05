@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import '../style/TodoListAdd.css';
+import '../style/GlobalStyle.css';
 
 const TodoListAdd = ({ onAdd }) => {
     const [value, setValue] = useState("");
@@ -20,11 +21,11 @@ const TodoListAdd = ({ onAdd }) => {
     }, [onAdd, value]);
 
     return (
-        <div className='todolistadd-form'>
-            <form className="TodoAdd" onSubmit={onSubmit}>
-                <input placeholder="추가할 할 일을 입력하세요" value={value} onChange={onChange}/>
-                <button type="submit">
-                    추가
+        <div className='tdl-addform gifont'>
+            <form className="tdl-form" onSubmit={onSubmit}>
+                <input className="tdl-addinput gifont" placeholder="추가할 할 일을 입력하세요" value={value} onChange={onChange}/>
+                <button className="tdl-addbtu gifont" type="submit">
+                    <h2>추가</h2>
                 </button>
             </form>
         </div>

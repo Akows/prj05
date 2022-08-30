@@ -1,8 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
+
 import TodoListAdd from '../components/todoListAdd';
 import TodoListBox from '../components/todoListBox';
 import TodoListDate from '../components/todoListDate';
+
 import '../style/Todolist.css';
+import '../style/GlobalStyle.css';
 
 const Todolist = () => {
 
@@ -35,8 +38,14 @@ const Todolist = () => {
             text,
             checked: false,
         };
+
+        if(text.length > 36) {
+            alert("입력 가능한 최대 글자수는 35자입니다.");
+        }
+        else {
             setTodos(todos.concat(todo));
             nextId.current++;
+        }
         }, [todos]);
 
     const onCheck = useCallback(
@@ -65,29 +74,36 @@ const Todolist = () => {
 
     return (
         <>
-            <div className='todolist-outer'>
-                <div className='todolist-inner todolist-section'>
-                    <div className='todolist-contentsbox'>
+            <div className='tdl-pagebackground setcenter'>
+                <div className='tdl-pageinner setcenter'>
+                    <div className='tdl-tdlarea setcenter gifont'>
 
-                        <h1>TodoList</h1>
+                        <div className='tdl-sidebar'>
 
-                        <div className='todolist-listouter'>
-                            <div className='todolist-menu'>
+                            <h1>TodoList</h1>
+
+                            <div className='tdl-sideutil'>
                                 <TodoListDate todos={todos}/>
                             </div>
 
-                            <div className='todolist-contents'>
-                                <TodoListAdd onAdd={onAdd}/>
+                        </div>
 
+                        <div className='tdl-contents'>
+
+                            <div className='tdl-addtdl'>
+                                <TodoListAdd onAdd={onAdd}/>
+                            </div>
+                            <div className='tdl-showtdl'>
                                 <TodoListBox
-                                    todos={todos} 
-                                    onRemove={onRemove} 
-                                    onCheck={onCheck} 
-                                    onImportant={onImportant} 
-                                />
+                                        todos={todos} 
+                                        onRemove={onRemove} 
+                                        onCheck={onCheck} 
+                                        onImportant={onImportant} 
+                                    />
+                            </div>
+                            <div className='tdl-pagenation'>
 
                             </div>
-
                         </div>
                     </div>
                 </div>

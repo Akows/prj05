@@ -1,5 +1,5 @@
-.todolist-listobject {
-    width: 450px;
+.tdl-listobject {
+    width: 850px;
     height: 70px;
 
     margin: 5px;
@@ -7,36 +7,48 @@
     display: flex;
 }
 
-.todolist-listtext {
+.tdl-important {
+    width: 8%;
+    height: 100%;
+
+    border: 1px black solid;
+    border-radius: 5px;
+}
+
+
+.tdl-listtext {
     width: 70%;
     height: 100%;
 
     display: flex;
 
     border: 1px black solid;
-    border-radius: 3px;
+    border-radius: 5px;
+
+    align-items: center;
 }
 
-.todolist-important {
-    width: 15%;
-    height: 100%;
-
-    border: 1px black solid;
-    border-radius: 3px;
+.tdl-checkbox {
+    width: 5%;
+}
+.tdl-todotext {
+    width: 95%;
 }
 
 .todolist-delete {
     width: 15%;
     height: 100%;
 
-    border: 1px black solid;
-    border-radius: 3px;
+    border: none;
+    border-radius: 10px;
+
+    background-color: white;
+    color: black;
 }
-
-
-
-
-
+.todolist-delete:active {
+    background-color: black;
+    color: white;
+}
 
 .todolist-listobjectimg {
     width: 32px;

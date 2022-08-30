@@ -1,4 +1,5 @@
 import '../style/TodoListBox.css';
+
 import TodoObject from './todoObject';
 
 const TodoListBox = ({ todos, onRemove, onCheck, onImportant }) => {

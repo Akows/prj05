@@ -44,10 +44,10 @@ const TodoListDate = (props) => {
     const listCount = props.todos.length;
 
 	return (
-        <div className='todolist-date'>
+        <div>
             <h4>{timeString}</h4>
             <h4>{dayString}</h4>
-            <h3 className="todolist-taskleft">할 일 {listCount}개 남음</h3>
+            <h3 className="tdl-taskleft">할 일 {listCount}개 남음</h3>
         </div>
     )
 }

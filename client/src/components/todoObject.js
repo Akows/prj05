@@ -1,4 +1,5 @@
 import '../style/TodoObject.css';
+import '../style/GlobalStyle.css';
 
 import staron from '../asset/icon/free-icon-favorite-121726.png';
 import staroff from '../asset/icon/free-icon-favorite-121724.png';
@@ -21,12 +22,9 @@ const TodoObject = ({ todo, onRemove, onCheck, onImportant }) => {
         onRemove(id)
     }
 
-
     return (
-        <div className='todolist-listobject'>
-
-
-            <div className='todolist-important' onClick={checkIrtEvent}>
+        <div className='tdl-listobject'>
+            <div className='tdl-important setcenter' onClick={checkIrtEvent}>
                 {important ? 
                     <img className='todolist-listobjectimg' src={staron} alt='!!'/> 
                 : 
@@ -34,24 +32,22 @@ const TodoObject = ({ todo, onRemove, onCheck, onImportant }) => {
                 }
             </div>
 
-            <div className='todolist-listtext' onClick={checkEvent}>
-                {checked ? 
-                    <img className='todolist-listobjectimg' src={checkimg} alt='!!'/> 
-                : 
-                    <img className='todolist-listobjectimg' src={uncheckimg} alt='!!'/>
-                }
-
-                <div className="text">
+            <div className='tdl-listtext' onClick={checkEvent}>
+                <div className='tdl-checkbox'>
+                    {checked ? 
+                        <img className='todolist-listobjectimg' src={checkimg} alt='!!'/> 
+                    : 
+                        <img className='todolist-listobjectimg' src={uncheckimg} alt='!!'/>
+                    }
+                </div>
+                <div className="tdl-todotext">
                     {text}
                 </div>
-
             </div>
 
-
-            <div className="todolist-delete" onClick={checkrRevEvent}>
-            삭제
+            <div className="todolist-delete setcenter gifont" onClick={checkrRevEvent}>
+                <h2>삭제</h2>
             </div>
-
         </div>
     )
 }
