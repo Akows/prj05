@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import TodoListAdd from '../components/todoListAdd';
 import TodoListBox from '../components/todoListBox';
@@ -6,31 +6,106 @@ import TodoListDate from '../components/todoListDate';
 
 import '../style/Todolist.css';
 import '../style/GlobalStyle.css';
+import Pagination from '../components/pagination';
 
 const Todolist = () => {
 
     const [todos, setTodos] = useState([
         {
             id: 1,
-            text: '리액트 공부하기',
+            text: '11',
             checked: false,
             important: false,
         },
         {
             id: 2,
-            text: '도서관가서 책 빌리기',
+            text: '22',
             checked: false,
             important: false,
         },
         {
             id: 3,
-            text: '방 청소하기',
+            text: '33',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 4,
+            text: '44',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 5,
+            text: '55',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 6,
+            text: '66',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 7,
+            text: '77',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 8,
+            text: '88',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 9,
+            text: '99',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 10,
+            text: '1010',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 11,
+            text: '1111',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 12,
+            text: '1212',
+            checked: false,
+            important: false,
+        },
+        {
+            id: 13,
+            text: '1313',
             checked: false,
             important: false,
         },
     ]);
-    
-    const nextId = useRef(4);
+
+    // 페이지네이션
+    // 현재 페이지를 제어할 변수 (가장 처음으로 보여질 페이지)
+    const [currentPage, setCurrentPage] = useState(1);
+    // 페이지 당 요소 갯수를 제어할 변수
+    const [postPerPage] = useState(5);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPosts = todos.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+    const nextId = useRef(14);
     
     const onAdd = useCallback(text => {
         const todo = {
@@ -72,6 +147,8 @@ const Todolist = () => {
         );
     }, [todos]);
 
+
+
     return (
         <>
             <div className='tdl-pagebackground setcenter'>
@@ -95,14 +172,18 @@ const Todolist = () => {
                             </div>
                             <div className='tdl-showtdl'>
                                 <TodoListBox
-                                        todos={todos} 
+                                        todos={currentPosts} 
                                         onRemove={onRemove} 
                                         onCheck={onCheck} 
                                         onImportant={onImportant} 
                                     />
                             </div>
                             <div className='tdl-pagenation'>
-
+                                <Pagination
+                                    postsPerPage={postPerPage}
+                                    totalPosts={todos.length}
+                                    paginate={paginate}
+                                />
                             </div>
                         </div>
                     </div>
