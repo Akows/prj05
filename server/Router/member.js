@@ -135,7 +135,7 @@ router.post("/login", (req, res) => {
                         })
 
                         // 그리고 완료 문구도 전송한다.
-                        res.json({ SystemMassage: "로그인 완료!", loginuser: result[0].MEMBER_ID });
+                        res.json({ SystemMassage: "로그인 완료!" });
                     }
                 })
                 // 검증 작업에 에러가 발생했을 경우 아래 코드를 실행하고 작동을 중지한다.
@@ -151,11 +151,20 @@ router.post("/login", (req, res) => {
     });
 })
 
+// 로그아웃 기능
+router.get("/logout", (res) => {
+    res.cookie("access-token", "none", {
+        expires: new Date(Date.now() + 1 * 1000),
+        httpOnly: true,
+    })
+    res.json({ SystemMassage: "로그아웃 완료!" });
+})
+
 // 토큰 유효성 검사 기능
 // 기본적으로 JWT.js에 구현한 validateToken 함수를 실행한다.
 // 유효성이 인증될 경우, 문구를 전송한다.
-router.get("/profile", validateToken, (req, res) => {
-    res.json("profile");
+router.get("/validation", validateToken, (req, res) => {
+    res.json({ SystemMassage: "검증이 완료되었습니다." });
 })
 
 // Router를 사용하고 있으므로 사용 코드를 작성해준다.

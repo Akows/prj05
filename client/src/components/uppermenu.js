@@ -1,21 +1,38 @@
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { myContext } from '../App';
 
 import '../style/Uppermenu.css';
 import '../style/GlobalStyle.css';
-
-import { myContext } from '../App';
-import { useContext } from 'react';
 
 const Uppermenu = () => {
 
     const loginInfo = useContext(myContext);
 
     const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('loginstatus');
-        localStorage.removeItem('whologin');
-        document.location.href = '/'
+        axios
+        .get('/prj05/member/logout')
+        .then(res => {
+            alert(res.data.SystemMassage);
+            document.location.href = '/'
+        })
+        .catch(res => {
+            alert("Error!");
+            document.location.href = '/'
+        });
     }
+
+    React.useEffect(() => {
+        axios
+        .get('/prj05/member/validation')
+        .then(res => {
+            loginInfo.setLoginStatus(true);
+        })
+        .catch(res => {
+            alert(res.data.SystemMassage);
+        });
+    }, [loginInfo])
 
     return (
         <>

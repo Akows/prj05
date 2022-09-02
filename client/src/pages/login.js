@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../style/Login.css';
 import '../style/GlobalStyle.css';
 
-const Login = (props) => {
+const Login = () => {
 
     // 로그인에 필요한 데이터를 변수로 제어할 useState 사용.
     const [inputID, setInputID] = useState('');
@@ -77,15 +77,9 @@ const Login = (props) => {
                 'memberpw': inputPW
             })
             .then(res => {
-                console.log(res.data.SystemMassage);
                 alert(res.data.SystemMassage);
-
-                props.sendLoginStatus(true);
-                props.sendLoginID(res.data.loginuser);
-                props.sendCookie("access-token");
             })
             .catch(res => {
-                console.log(res.data.SystemMassage);
                 alert(res.data.SystemMassage);             
             })
         }
