@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 import { myContext } from '../App';
 
 import '../style/Uppermenu.css';
@@ -8,29 +9,28 @@ import '../style/GlobalStyle.css';
 
 const Uppermenu = () => {
 
-    const loginInfo = useContext(myContext);
+    const contextApi = useContext(myContext);
 
     const logout = () => {
         axios
         .get('/prj05/member/logout')
         .then(res => {
+            localStorage.removeItem("MEMBER_ID");
+            sessionStorage.removeItem("MEMBER_NAME", res.data.MEMBER_NAME);
+            sessionStorage.removeItem("MEMBER_EMAIL", res.data.MEMBER_EMAIL);
+            sessionStorage.removeItem("MEMBER_JOINDATE", res.data.MEMBER_JOINDATE);
             alert(res.data.SystemMassage);
             document.location.href = '/'
         })
-        .catch(res => {
+        .catch(() => {
             alert("Error!");
             document.location.href = '/'
         });
     }
 
     React.useEffect(() => {
-        axios
-        .get('/prj05/member/validation')
-        .then(res => {
-            loginInfo.setLoginStatus(true);
-            console.log(res.data.SystemMassage);
-        });
-    }, [loginInfo])
+        contextApi.loginCheck();
+    });
 
     return (
         <>
@@ -53,7 +53,7 @@ const Uppermenu = () => {
                     </Link>
                 </div>
                 <div className='menubar-memberbtuarea setcenter'>
-                    {loginInfo.loginStatus !== true ?
+                    {contextApi.loginStatus !== true ?
                         <>
                         <Link to={'/login'}>
                         <button className='menubar-buttontag gifont'>로그인</button>
@@ -65,7 +65,7 @@ const Uppermenu = () => {
                     :
                         <>
                         <Link to={'/info'}>
-                        <button className='menubar-buttontag gifont'>{loginInfo.whoIsLogin}</button>
+                        <button className='menubar-buttontag gifont'>{contextApi.whoIsLogin}</button>
                         </Link>
                         <Link to={''}>
                         <button className='menubar-buttontag gifont' onClick={logout}>로그아웃</button>

@@ -8,10 +8,10 @@ const { sign, verify } = require("jsonwebtoken");
 
 // JWT를 생성하는 함수.
 // member 정보를 매개변수로 받아 토큰을 생성하여 반환한다.
-const createTokens = (user) => {
+const createTokens = (data) => {
     // 토큰을 생성, accessToken 변수에 담고 "jwtsecretplschange"의 이름으로 서버에 남겨둔다?
     // 토큰 이름은 env 파일?
-    const accessToken = sign({ memberid: user.MEMBER_ID, memberpw: user.MEMBER_PW }, process.env.ACCESSTOKEN_SECRET_KEY);
+    const accessToken = sign({ memberid: data.MEMBER_ID, memberpw: data.MEMBER_PW }, process.env.ACCESSTOKEN_SECRET_KEY);
     
     // 생성한 토큰을 반환.
     return accessToken;
@@ -34,6 +34,7 @@ const validateToken = (req, res, next) => {
         // 토큰이 유효할 경우, authenticated을 true로 바꾸고 함수를 종료한 뒤 이후 코드로 넘어가게 한다. 
         if (validToken) {
             req.authenticated = true;
+            res.json({ memberid: validToken.memberid });
             return next();
         }
     }

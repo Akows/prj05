@@ -166,11 +166,61 @@ router.get("/logout", (req, res) => {
 })
 
 // 토큰 유효성 검사 기능
-// 기본적으로 JWT.js에 구현한 validateToken 함수를 실행한다.
+// 본 라우터는 (JWT.js에 구현한) validateToken 함수를 실행한다.
 // 유효성이 인증될 경우, 문구를 전송한다.
-router.get("/validation", validateToken, (req, res) => {
-    res.json({ SystemMassage: "검증이 완료되었습니다." });
+router.get("/validation", validateToken, () => {
+    console.log("JWT 검증완료됨.");
 })
+
+// 회원정보조회 기능
+router.get("/info", (req, res) => {
+    const memberid = req.query.MEMBER_ID;
+
+    const sqlQuery = `SELECT MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_JOINDATE 
+                        FROM member 
+                        WHERE MEMBER_ID = ?;`;
+
+    db.query(sqlQuery, memberid, (err, data) => {
+        if (!err) {
+            res.send(data[0])
+        } 
+        else {
+            res.send(err)
+        }
+    });    
+})
+
+// 회원정보수정 기능
+router.put("/infomodify", (req, res) => {
+    const mamberNumber = req.query.MEMBER_NUMBER;
+    const memberId = req.query.MEMBER_ID;
+    const mamberName = req.query.MEMBER_NAME;
+    const mamberEmail = req.query.MEMBER_EMAIL;
+
+    const sqlQuery = `UPDATE member 
+                        SET MEMBER_ID = ?, MEMBER_NAME = ?, MEMBER_EMAIL = ?
+                        WHERE MEMBER_NUMBER = ?;`;
+
+    const params = [memberId, mamberName, mamberEmail, mamberNumber]
+
+    db.query(sqlQuery, params, (err) => {
+        if (!err) {
+            res.send({ 'SystemMessage': '회원정보가 수정되었습니다.' })
+        } 
+        else {
+            res.send(err)
+        }
+    });
+})
+
+
+
+
+
+
+
+
 
 // Router를 사용하고 있으므로 사용 코드를 작성해준다.
 module.exports = router;
+

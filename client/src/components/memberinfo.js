@@ -1,72 +1,61 @@
+import React, { useContext, useState } from 'react';
 
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { myContext } from '../App';
 
 import '../style/MemberInfo.css';
 
-const MemberInfo = (props) => {
+const MemberInfo = () => {
 
-    const [memberData, setMemberData] = useState([]);
+    const contextApi = useContext(myContext);
+
     const [componentValue, setComponentValue] = useState('showinfo');
-    const [memberId, setMemberId] = useState('');
-    const [mamberName, setMemberName] = useState('');
-    const [mamberEmail, setMemberEmail] = useState('');
 
-    useEffect(() => {
-        axios
-        .get('/prj05/member/info', {
-            params: {
-                'MEMBER_ID': props.whoLogin,
-            }
-        })
-        .then(res => {
-            setMemberData(res.data);
-            setMemberId(memberData.MEMBER_ID);
-            setMemberName(memberData.MEMBER_NAME);           
-            setMemberEmail(memberData.MEMBER_EMAIL);
-        });
-    
-    }, [props.whoLogin, memberData.MEMBER_ID, memberData.MEMBER_NAME, memberData.MEMBER_EMAIL])
+    React.useEffect(() => {
+        contextApi.ReqMemberInfo();
+    });
+
+    const memberData = '';
+
+    const memberNumber = '';
 
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
     const handleInputId = (e) => {
-        setMemberId(e.target.value)
+        // setMemberId(e.target.value);
     }
     const handleInputName = (e) => {
-        setMemberName(e.target.value)
+        // setMemberName(e.target.value);
     }
     const handleInputEmail = (e) => {
-        setMemberEmail(e.target.value)
+        // setMemberEmail(e.target.value);
     }
 
     // 정보 조회 화면과 변경 화면을 제어하는 onClick 함수들
     const toChangeMemberInfo = () => {
         setComponentValue('changeinfo');
     }
-
     const toShowMemberInfo = () => {
         setComponentValue('showinfo');
     }
 
     const modifyMemberInfo = () => {
-        axios
-        .put('/prj05/member/infomodify', null, {
-            params: {
-                'MEMBER_NUMBER': memberData.MEMBER_NUMBER,
-                'MEMBER_ID': memberId,
-                'MEMBER_NAME': mamberName,
-                'MEMBER_EMAIL': mamberEmail
-            }
-        })
-        .then(res => {
-            // 작업 완료 되면 메시지 알람 띄움.
-            alert(res.data.SystemMessage);
-            // 작업 완료 되면 페이지 이동(새로고침).
-            document.location.href = '/member'
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        // axios
+        // .put('/prj05/member/infomodify', null, {
+        //     params: {
+        //         'MEMBER_NUMBER': memberData.MEMBER_NUMBER,
+        //         'MEMBER_ID': memberId,
+        //         'MEMBER_NAME': mamberName,
+        //         'MEMBER_EMAIL': mamberEmail
+        //     }
+        // })
+        // .then(res => {
+        //     // 작업 완료 되면 메시지 알람 띄움.
+        //     alert(res.data.SystemMessage);
+        //     // 작업 완료 되면 페이지 이동(새로고침).
+        //     document.location.href = '/info'
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // })
     }
 
     return (
@@ -81,7 +70,7 @@ const MemberInfo = (props) => {
                                 </div>
                                 <div className='memberinfo-memberinfoform-input'>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        회원번호 : {memberData.MEMBER_NUMBER}
+                                        회원번호 : {sessionStorage.getItem("MEMBER_DATA"[1])}
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
                                         아이디 : {memberData.MEMBER_ID}
