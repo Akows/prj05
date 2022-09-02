@@ -152,11 +152,16 @@ router.post("/login", (req, res) => {
 })
 
 // 로그아웃 기능
-router.get("/logout", (res) => {
-    res.cookie("access-token", "none", {
-        expires: new Date(Date.now() + 1 * 1000),
-        httpOnly: true,
-    })
+// HttpOnly를 사용하는 JWT의 경우 프론트단에서 Remove가 안된다고 한다.
+// 따라서 백엔드단에서 쿠키를 제거하여 로그아웃 기능을 구현하고자 한다.
+router.get("/logout", (req, res) => {
+    // maxAge를 0으로 맞춰 소멸되도록 하는 방법.
+    // 이외에는 Cookie-Parser를 사용하고 있다면, res.clearCookie(name);으로 삭제가 가능하다고 한다.
+    res.cookie('access-token', '', {
+        maxAge: 0
+    });
+
+    // 시스템 메시지를 전송한다.
     res.json({ SystemMassage: "로그아웃 완료!" });
 })
 

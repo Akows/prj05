@@ -78,9 +78,11 @@ const Login = () => {
             })
             .then(res => {
                 alert(res.data.SystemMassage);
+                document.location.href = '/';
             })
             .catch(res => {
-                alert(res.data.SystemMassage);             
+                alert(res.data.SystemMassage);            
+                document.location.href = '/';
             })
         }
     }

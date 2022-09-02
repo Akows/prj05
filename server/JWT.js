@@ -39,9 +39,9 @@ const validateToken = (req, res, next) => {
     }
     // 에러가 발생했을 경우, 아래 코드를 실행하고 작동을 종료한다.
     catch (err) {
-        return res.status(400).json({ SystemMassage: err });
+        return res.status(400).json({ SystemMassage: "검증에 에러가 발생하였습니다." + err });
     }
 };
 
-// 구현해둔 함수를 배포.
+// 구현한 함수를 사용하기 위해서 exports 해준다.
 module.exports = { createTokens, validateToken };

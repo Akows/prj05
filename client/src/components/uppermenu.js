@@ -28,9 +28,7 @@ const Uppermenu = () => {
         .get('/prj05/member/validation')
         .then(res => {
             loginInfo.setLoginStatus(true);
-        })
-        .catch(res => {
-            alert(res.data.SystemMassage);
+            console.log(res.data.SystemMassage);
         });
     }, [loginInfo])
 
