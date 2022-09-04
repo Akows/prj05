@@ -176,7 +176,7 @@ router.get("/validation", validateToken, () => {
 router.get("/info", (req, res) => {
     const memberid = req.query.MEMBER_ID;
 
-    const sqlQuery = `SELECT MEMBER_ID, MEMBER_NAME, MEMBER_EMAIL, MEMBER_JOINDATE 
+    const sqlQuery = `SELECT MEMBER_NUMBER, MEMBER_NAME, MEMBER_EMAIL, MEMBER_JOINDATE 
                         FROM member 
                         WHERE MEMBER_ID = ?;`;
 

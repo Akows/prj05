@@ -39,8 +39,6 @@ function App() {
     .then((res) => {
       setLoginStatus(true);
       setwhoIsLogin(res.data.memberid);
-
-      localStorage.setItem("MEMBER_ID", res.data.memberid);
     })
     .catch(() => {
       setLoginStatus(false);
@@ -53,10 +51,12 @@ function App() {
     axios
     .get('/prj05/member/info', {
       params: {
-        MEMBER_ID: localStorage.getItem("MEMBER_ID")
+        MEMBER_ID: whoIsLogin
     }
     })
     .then((res) => {
+      sessionStorage.setItem("MEMBER_NUMBER", res.data.MEMBER_NUMBER);
+      sessionStorage.setItem("MEMBER_ID", whoIsLogin);
       sessionStorage.setItem("MEMBER_NAME", res.data.MEMBER_NAME);
       sessionStorage.setItem("MEMBER_EMAIL", res.data.MEMBER_EMAIL);
       sessionStorage.setItem("MEMBER_JOINDATE", res.data.MEMBER_JOINDATE);
@@ -64,7 +64,7 @@ function App() {
     .catch(() => {
       console.log("ERROR!");
     });
-  }, []);
+  }, [whoIsLogin]);
 
   // React.useEffect(() => {
   //   axios
@@ -78,7 +78,7 @@ function App() {
   return (
     <> 
       <CookiesProvider>
-        <myContext.Provider value={{ whoIsLogin, loginStatus, loginCheck, ReqMemberInfo }}>
+        <myContext.Provider value={{ whoIsLogin, loginStatus, setwhoIsLogin, setLoginStatus, loginCheck, ReqMemberInfo }}>
           <BrowserRouter>
             <Uppermenu/>
             <Routes>

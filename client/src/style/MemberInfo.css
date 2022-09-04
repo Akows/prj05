@@ -49,8 +49,13 @@
     height: 50px;
 }
 .memberinfo-memberinfoform-idpwinput > input {
-    width: 60%;
-    height: 70%;
+    width: 50%;
+    height: 25px;
+
+    font-family: 'GIfont';
+
+    border: none;
+    border-radius: 10px;
 }
 
 .memberinfo-memberinfoform-submitbutton {

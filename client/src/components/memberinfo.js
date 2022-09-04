@@ -1,8 +1,10 @@
-import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import React, { useCallback, useContext, useState } from 'react';
 
 import { myContext } from '../App';
 
 import '../style/MemberInfo.css';
+import '../style/GlobalStyle.css';
 
 const MemberInfo = () => {
 
@@ -10,23 +12,37 @@ const MemberInfo = () => {
 
     const [componentValue, setComponentValue] = useState('showinfo');
 
-    React.useEffect(() => {
+    const [memberNumber, setMemberNumber] = useState('');   
+    const [memberId, setMemberId] = useState('');
+    const [memberName, setMemberName] = useState('');
+    const [memberEmail, setMemberEmail] = useState('');
+    const [memberJoinDate, setMemberJoinDate] = useState('');
+
+    const memberInfoReq = useCallback(() => {
         contextApi.ReqMemberInfo();
-    });
 
-    const memberData = '';
+        setMemberNumber(sessionStorage.getItem("MEMBER_NUMBER"));
+        setMemberId(sessionStorage.getItem("MEMBER_ID"));
+        setMemberName(sessionStorage.getItem("MEMBER_NAME"));
+        setMemberEmail(sessionStorage.getItem("MEMBER_EMAIL"));
+        setMemberJoinDate(sessionStorage.getItem("MEMBER_JOINDATE"));
+    }, [contextApi]);
 
-    const memberNumber = '';
+    React.useEffect(() => {
+        contextApi.loginCheck();
+        memberInfoReq();
+
+    }, [contextApi, memberInfoReq]);
 
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
     const handleInputId = (e) => {
-        // setMemberId(e.target.value);
+        setMemberId(e.target.value);
     }
     const handleInputName = (e) => {
-        // setMemberName(e.target.value);
+        setMemberName(e.target.value);
     }
     const handleInputEmail = (e) => {
-        // setMemberEmail(e.target.value);
+        setMemberEmail(e.target.value);
     }
 
     // 정보 조회 화면과 변경 화면을 제어하는 onClick 함수들
@@ -38,24 +54,27 @@ const MemberInfo = () => {
     }
 
     const modifyMemberInfo = () => {
-        // axios
-        // .put('/prj05/member/infomodify', null, {
-        //     params: {
-        //         'MEMBER_NUMBER': memberData.MEMBER_NUMBER,
-        //         'MEMBER_ID': memberId,
-        //         'MEMBER_NAME': mamberName,
-        //         'MEMBER_EMAIL': mamberEmail
-        //     }
-        // })
-        // .then(res => {
-        //     // 작업 완료 되면 메시지 알람 띄움.
-        //     alert(res.data.SystemMessage);
-        //     // 작업 완료 되면 페이지 이동(새로고침).
-        //     document.location.href = '/info'
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // })
+        axios
+        .put('/prj05/member/infomodify', null, {
+            params: {
+                'MEMBER_NUMBER': memberNumber,
+                'MEMBER_ID': memberId,
+                'MEMBER_NAME': memberName,
+                'MEMBER_EMAIL': memberEmail
+            }
+        })
+        .then(res => {
+            // 수정사항이 반영된 이후 다시 한번 데이터를 조회하여 Set.
+            memberInfoReq();
+            // 작업 완료 되면 메시지 알람 띄움.
+            alert(res.data.SystemMessage);
+            // 작업 완료 되면 페이지 이동 (새로고침).
+            document.location.href = '/info'
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
     }
 
     return (
@@ -70,19 +89,19 @@ const MemberInfo = () => {
                                 </div>
                                 <div className='memberinfo-memberinfoform-input'>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        회원번호 : {sessionStorage.getItem("MEMBER_DATA"[1])}
+                                        회원번호 : {memberNumber}
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        아이디 : {memberData.MEMBER_ID}
+                                        아이디 : {memberId}
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        이름 : {memberData.MEMBER_NAME} 
+                                        이름 : {memberName} 
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        이메일주소 : {memberData.MEMBER_EMAIL}
+                                        이메일주소 : {memberEmail}
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        가입날짜 : {memberData.MEMBER_JOINDATE} 
+                                        가입날짜 : {memberJoinDate} 
                                     </div>
                                 </div>
                                 <div className='memberinfo-memberinfoform-submitbutton'>
@@ -104,19 +123,19 @@ const MemberInfo = () => {
                                 </div>
                                 <div className='memberinfo-memberinfoform-input'>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        회원번호 : {memberData.MEMBER_NUMBER}
+                                        회원번호 : {memberNumber}
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        아이디 : <input defaultValue={memberData.MEMBER_ID} onChange={handleInputId}/>
+                                        아이디 : <input defaultValue={memberId} onChange={handleInputId}/>
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        이름 : <input defaultValue={memberData.MEMBER_NAME} onChange={handleInputName}/>
+                                        이름 : <input defaultValue={memberName} onChange={handleInputName}/>
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        이메일주소 :  <input defaultValue={memberData.MEMBER_EMAIL} onChange={handleInputEmail}/>
+                                        이메일주소 :  <input defaultValue={memberEmail} onChange={handleInputEmail}/>
                                     </div>
                                     <div className='memberinfo-memberinfoform-idpwinput'>
-                                        가입날짜 : {memberData.MEMBER_JOINDATE} 
+                                        가입날짜 : {memberJoinDate} 
                                     </div>
                                 </div>
                                 <div className='memberinfo-memberinfoform-submitbutton'>

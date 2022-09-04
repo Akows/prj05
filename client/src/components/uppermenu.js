@@ -15,10 +15,11 @@ const Uppermenu = () => {
         axios
         .get('/prj05/member/logout')
         .then(res => {
-            localStorage.removeItem("MEMBER_ID");
-            sessionStorage.removeItem("MEMBER_NAME", res.data.MEMBER_NAME);
-            sessionStorage.removeItem("MEMBER_EMAIL", res.data.MEMBER_EMAIL);
-            sessionStorage.removeItem("MEMBER_JOINDATE", res.data.MEMBER_JOINDATE);
+            sessionStorage.removeItem("MEMBER_NUMBER");
+            sessionStorage.removeItem("MEMBER_ID");
+            sessionStorage.removeItem("MEMBER_NAME");
+            sessionStorage.removeItem("MEMBER_EMAIL");
+            sessionStorage.removeItem("MEMBER_JOINDATE");
             alert(res.data.SystemMassage);
             document.location.href = '/'
         })
