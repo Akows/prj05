@@ -7,17 +7,20 @@ import '../style/MemberInfo.css';
 import '../style/GlobalStyle.css';
 
 const MemberInfo = () => {
-
+    // contextAPI를 사용.
     const contextApi = useContext(myContext);
 
+    // 정보 조회와 수정 페이지를 전환하는데 사용되는 변수.
     const [componentValue, setComponentValue] = useState('showinfo');
 
+    // 정보 출력 및 수정을 위해 필요한 변수.
     const [memberNumber, setMemberNumber] = useState('');   
     const [memberId, setMemberId] = useState('');
     const [memberName, setMemberName] = useState('');
     const [memberEmail, setMemberEmail] = useState('');
     const [memberJoinDate, setMemberJoinDate] = useState('');
 
+    // 회원정보 조회 함수를 불러와 실행한 뒤 각 데이터를 sessionStorage를 이용해 저장.
     const memberInfoReq = useCallback(() => {
         contextApi.ReqMemberInfo();
 
@@ -28,6 +31,8 @@ const MemberInfo = () => {
         setMemberJoinDate(sessionStorage.getItem("MEMBER_JOINDATE"));
     }, [contextApi]);
 
+    // 페이지가 처음 실행되면, JWT 검증 함수를 실행하고 상단에 작성한 memberInfoReq 함수를 실행한다.
+    // JWT 변조 여부를 확인하기 위해 검증 함수를 한 번 실행함.(보안 기능 보완 필요.)
     React.useEffect(() => {
         contextApi.loginCheck();
         memberInfoReq();
