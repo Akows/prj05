@@ -3,10 +3,10 @@ import React, { useCallback, useRef, useState } from 'react';
 import TodoListAdd from '../components/todoListAdd';
 import TodoListBox from '../components/todoListBox';
 import TodoListDate from '../components/todoListDate';
+import Pagination from '../components/pagination';
 
 import '../style/Todolist.css';
 import '../style/GlobalStyle.css';
-import Pagination from '../components/pagination';
 
 const Todolist = () => {
 
@@ -146,8 +146,6 @@ const Todolist = () => {
             todo.id === id ? { ...todo, important: !todo.important } : todo)
         );
     }, [todos]);
-
-
 
     return (
         <>
