@@ -29,6 +29,7 @@ const MemberInfo = () => {
         setMemberName(sessionStorage.getItem("MEMBER_NAME"));
         setMemberEmail(sessionStorage.getItem("MEMBER_EMAIL"));
         setMemberJoinDate(sessionStorage.getItem("MEMBER_JOINDATE"));
+
     }, [contextApi]);
 
     // 페이지가 처음 실행되면, JWT 검증 함수를 실행하고 상단에 작성한 memberInfoReq 함수를 실행한다.
@@ -36,7 +37,6 @@ const MemberInfo = () => {
     React.useEffect(() => {
         contextApi.loginCheck();
         memberInfoReq();
-
     }, [contextApi, memberInfoReq]);
 
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
