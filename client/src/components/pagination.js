@@ -1,5 +1,8 @@
 import React from 'react';
 
+import '../style/Pagination.css';
+import '../style/GlobalStyle.css';
+
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     const pageNumbers = [];
 
@@ -8,16 +11,14 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
     }
 
     return (
-            <nav>
-                <ul className='pagination'>
-                    {pageNumbers.map(number => (
-                    <li key={number} className='page-item'>
-                        <button onClick={() => paginate(number)}>{number}</button>
-                    </li>
-                    ))}
-                </ul>
-            </nav>
-        );
-    };
+        <div className='paganation-outer'>
+            {pageNumbers.map(number => (
+                <div className='paganation-btu' key={number}>
+                    <button className='paganation-button gifont' onClick={() => paginate(number)}>{number}</button>
+                </div>
+            ))}
+        </div>
+    );
+};
 
 export default Pagination;
