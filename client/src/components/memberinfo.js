@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useCallback, useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { myContext } from '../App';
 
@@ -20,24 +20,31 @@ const MemberInfo = () => {
     const [memberEmail, setMemberEmail] = useState('');
     const [memberJoinDate, setMemberJoinDate] = useState('');
 
-    // 회원정보 조회 함수를 불러와 실행한 뒤 각 데이터를 sessionStorage를 이용해 저장.
-    const memberInfoReq = useCallback(() => {
-        contextApi.ReqMemberInfo();
-
-        setMemberNumber(sessionStorage.getItem("MEMBER_NUMBER"));
-        setMemberId(sessionStorage.getItem("MEMBER_ID"));
-        setMemberName(sessionStorage.getItem("MEMBER_NAME"));
-        setMemberEmail(sessionStorage.getItem("MEMBER_EMAIL"));
-        setMemberJoinDate(sessionStorage.getItem("MEMBER_JOINDATE"));
-
-    }, [contextApi]);
-
     // 페이지가 처음 실행되면, JWT 검증 함수를 실행하고 상단에 작성한 memberInfoReq 함수를 실행한다.
     // JWT 변조 여부를 확인하기 위해 검증 함수를 한 번 실행함.(보안 기능 보완 필요.)
     React.useEffect(() => {
         contextApi.loginCheck();
-        memberInfoReq();
-    }, [contextApi, memberInfoReq]);
+
+        if(!contextApi.loginStatus)
+            console.log("회원정보 검증이 실패하였습니다.");
+
+        axios
+        .get('/prj05/member/info', {
+        params: {
+            MEMBER_ID: contextApi.whoIsLogin
+        }
+        })
+        .then((res) => {
+            setMemberNumber(res.data.MEMBER_NUMBER);
+            setMemberId(contextApi.whoIsLogin);
+            setMemberName(res.data.MEMBER_NAME);
+            setMemberEmail(res.data.MEMBER_EMAIL);
+            setMemberJoinDate(res.data.MEMBER_JOINDATE);
+        })
+        .catch(() => {
+            console.log("회원정보 불러오기가 실패하였습니다.");
+        });
+    }, [contextApi, ]);
 
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
     const handleInputId = (e) => {
@@ -70,7 +77,9 @@ const MemberInfo = () => {
         })
         .then(res => {
             // 수정사항이 반영된 이후 다시 한번 데이터를 조회하여 Set.
-            memberInfoReq();
+            setMemberId(res.data.MEMBER_ID);
+            setMemberName(res.data.MEMBER_NAME);
+            setMemberEmail(res.data.MEMBER_EMAIL);
             // 작업 완료 되면 메시지 알람 띄움.
             alert(res.data.SystemMessage);
             // 작업 완료 되면 페이지 이동 (새로고침).

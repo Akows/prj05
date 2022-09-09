@@ -45,40 +45,10 @@ function App() {
     });
   }, []);
 
-  // 맴버 정보를 조회하는 함수.
-  // 마찬가지로 ContextAPI로 모든 컴포넌트들에게 전달.
-  const ReqMemberInfo = useCallback(() => {
-    axios
-    .get('/prj05/member/info', {
-      params: {
-        MEMBER_ID: whoIsLogin
-    }
-    })
-    .then((res) => {
-      sessionStorage.setItem("MEMBER_NUMBER", res.data.MEMBER_NUMBER);
-      sessionStorage.setItem("MEMBER_ID", whoIsLogin);
-      sessionStorage.setItem("MEMBER_NAME", res.data.MEMBER_NAME);
-      sessionStorage.setItem("MEMBER_EMAIL", res.data.MEMBER_EMAIL);
-      sessionStorage.setItem("MEMBER_JOINDATE", res.data.MEMBER_JOINDATE);
-    })
-    .catch(() => {
-      console.log("ERROR!");
-    });
-  }, [whoIsLogin]);
-
-  // React.useEffect(() => {
-  //   axios
-  //   .get('/prj05/member/validation')
-  //   .then(res => {
-  //       setLoginStatus(true);
-  //       console.log(res.data.SystemMassage);
-  //   });
-  // }, [loginStatus])
-
   return (
     <> 
       <CookiesProvider>
-        <myContext.Provider value={{ whoIsLogin, loginStatus, setwhoIsLogin, setLoginStatus, loginCheck, ReqMemberInfo }}>
+        <myContext.Provider value={{ whoIsLogin, loginStatus, setwhoIsLogin, setLoginStatus, loginCheck }}>
           <BrowserRouter>
             <Uppermenu/>
             <Routes>
