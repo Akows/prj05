@@ -54,3 +54,7 @@
     width: 32px;
     height: 32px;
 }
+
+.tdl-cktext {
+    text-decoration: line-through;
+}

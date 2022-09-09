@@ -12,11 +12,8 @@ const TodoObjectDB = ( props ) => {
     
     const checkEvent = () => {
         axios.put("prj05/todo/check", {
-            data: {
-                todonumber: props.todo.TODO_NUMBER,
-                isck: props.todo.TODO_ISCHECKED
-            }
-
+            todonumber: props.todo.TODO_NUMBER,
+            isck: props.todo.TODO_ISCHECKED
         })
         .then((res) => {
             console.log(res.data.SystemMassage);
@@ -26,10 +23,8 @@ const TodoObjectDB = ( props ) => {
 
     const checkIrtEvent = () => {
         axios.put("prj05/todo/important", {
-            data: {
-                todonumber: props.todo.TODO_NUMBER,
-                isip: props.todo.TODO_IMPORTANT
-            }
+            todonumber: props.todo.TODO_NUMBER,
+            isip: props.todo.TODO_ISIMPORTANT
         })
         .then((res) => {
             console.log(res.data.SystemMassage);
@@ -52,7 +47,7 @@ const TodoObjectDB = ( props ) => {
     return (
         <div className='tdl-listobject'>
             <div className='tdl-important setcenter' onClick={checkIrtEvent}>
-                {props.todo.TODO_IMPORTANT ? 
+                {props.todo.TODO_ISIMPORTANT ? 
                     <img className='todolist-listobjectimg' src={staron} alt='!!'/> 
                 : 
                     <img className='todolist-listobjectimg' src={staroff} alt='!!'/>
@@ -68,7 +63,11 @@ const TodoObjectDB = ( props ) => {
                     }
                 </div>
                 <div className="tdl-todotext">
-                    {props.todo.TODO_TEXT}
+                {props.todo.TODO_ISCHECKED ? 
+                    <p className='tdl-cktext'>{props.todo.TODO_TEXT}</p>
+                : 
+                    <p>{props.todo.TODO_TEXT}</p>
+                }
                 </div>
             </div>
 

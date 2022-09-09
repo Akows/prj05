@@ -19,7 +19,7 @@ router.post("/showtodo", (req, res) => {
     const sqlQuery = `SELECT * 
                         FROM todolist
                         WHERE TODO_MEMBER = ?
-                        ORDER BY TODO_ISIMPORTANT;`;
+                        ORDER BY TODO_ISIMPORTANT DESC;`;
 
     db.query(sqlQuery, params, (err, data) => {
         if (!err) {
@@ -75,6 +75,8 @@ router.put("/check", (req, res) => {
 router.put("/important", (req, res) => {
     const { todonumber, isip } = req.body;
     const params = [isip, isip, todonumber];
+
+    console.log(params);
 
     const sqlQuery = `UPDATE todolist
                         SET TODO_ISIMPORTANT = 
