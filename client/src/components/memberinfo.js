@@ -30,9 +30,9 @@ const MemberInfo = () => {
 
         axios
         .get('/prj05/member/info', {
-        params: {
-            MEMBER_ID: contextApi.whoIsLogin
-        }
+            params: {
+                MEMBER_ID: contextApi.whoIsLogin
+            }
         })
         .then((res) => {
             setMemberNumber(res.data.MEMBER_NUMBER);
@@ -44,7 +44,7 @@ const MemberInfo = () => {
         .catch(() => {
             console.log("회원정보 불러오기가 실패하였습니다.");
         });
-    }, [contextApi, ]);
+    }, [contextApi]);
 
     // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
     const handleInputId = (e) => {

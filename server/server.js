@@ -7,6 +7,7 @@ const app = express();
 // 이 시트에 서버 코드를 작성해도 되지만 여기서는 보기 편하기 위해서 Router를 사용하여 파일을 나누어준다.
 const member = require("./Router/member");
 const board = require("./Router/board");
+const todolist = require("./Router/todolist");
 const callapi = require("./Router/callapi");
 
 // express.js로 제작한 서버에서 json으로 이루어진 Request Body를 받았을 경우.
@@ -18,6 +19,7 @@ app.use(express.json());
 // 프론트에서 Axios로 호출하는 url 주소를 구분하여 알맞은 Router 파일을 연결해준다.
 app.use("/prj05/member", member);
 app.use("/prj05/board", board);
+app.use("/prj05/todo", todolist);
 app.use("/prj05/api", callapi);
 
 // 서버가 정상적으로 가동되고 있는지 확인하기 위한 코드.

@@ -1,9 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { createContext, useCallback, useState } from 'react';
-
-import { CookiesProvider } from 'react-cookie';
-
-import './App.css';
+import axios from 'axios';
 
 import Uppermenu from './components/uppermenu';
 import Main from './pages/main';
@@ -16,7 +13,8 @@ import Join from './pages/join';
 import MemberInfo from './components/memberinfo';
 
 import Test from './pages/test';
-import axios from 'axios';
+
+import './App.css';
 
 // 전역 상태 관리를 위한 ContextAPI 사용을 위해 createContext()을 사용, 빈 Context를 생성.
 export const myContext = createContext('defaultvalue');
@@ -37,35 +35,36 @@ function App() {
     axios
     .get('/prj05/member/validation')
     .then((res) => {
+      // console.log("정상검증됨.");
       setLoginStatus(true);
       setwhoIsLogin(res.data.memberid);
     })
     .catch(() => {
+      // console.log("정상검증되지않음.");
       setLoginStatus(false);
+      setwhoIsLogin('비로그인사용자');
     });
   }, []);
 
   return (
     <> 
-      <CookiesProvider>
-        <myContext.Provider value={{ whoIsLogin, loginStatus, setwhoIsLogin, setLoginStatus, loginCheck }}>
-          <BrowserRouter>
-            <Uppermenu/>
-            <Routes>
-              <Route path='/' element={<Main/>}/>
-              <Route path='/api' element={<Callapi/>}/>
-              <Route path='/todolist' element={<Todolist/>}/>
-              <Route path='/board' element={<Board/>}/>
-              <Route path='/boardview/:BOARD_NUMBER' element={<BoardViewandMod/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/join' element={<Join/>}/>
-              <Route path='/info' element={<MemberInfo/>}/>
+      <myContext.Provider value={{ whoIsLogin, loginStatus, setwhoIsLogin, setLoginStatus, loginCheck }}>
+        <BrowserRouter>
+          <Uppermenu/>
+          <Routes>
+            <Route path='/' element={<Main/>}/>
+            <Route path='/api' element={<Callapi/>}/>
+            <Route path='/todolist' element={<Todolist/>}/>
+            <Route path='/board' element={<Board/>}/>
+            <Route path='/boardview/:BOARD_NUMBER' element={<BoardViewandMod/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/join' element={<Join/>}/>
+            <Route path='/info' element={<MemberInfo/>}/>
 
-              <Route path='/test' element={<Test/>}/>
-            </Routes>
-          </BrowserRouter>
-        </myContext.Provider>
-      </CookiesProvider>
+            <Route path='/test' element={<Test/>}/>
+          </Routes>
+        </BrowserRouter>
+      </myContext.Provider>
     </>
   );
 }

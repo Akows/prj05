@@ -1,6 +1,6 @@
 import '../style/TodoListDate.css';
 
-const TodoListDate = (props) => {
+const TodoListDateDB = (props) => {
 
     // 자바스크립트 날짜 데이터 가져오기.
     // new 키워드를 사용하여 Date 객체 가져오기.
@@ -41,7 +41,7 @@ const TodoListDate = (props) => {
     const dayString = week[day];
 
     // Todolist에 존재하는 요소들의 총 갯수 구하기.
-    const listCount = props.todos.length;
+    const listCount = props.todos.datas?.length;
 
 	return (
         <div>
@@ -52,4 +52,4 @@ const TodoListDate = (props) => {
     )
 }
 
-export default TodoListDate;
+export default TodoListDateDB;

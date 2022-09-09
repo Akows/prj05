@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { myContext } from '../App';
 
 import BoardWrite from '../components/boardwrite';
@@ -14,12 +14,12 @@ const Board = () => {
     const [boarddata, setBoarddata] = useState([]);
     const [componentvalue, setComponentvalue] = useState('list');
 
-    useEffect(() => {
+    React.useEffect(() => {
         axios
         .get('/prj05/board/select')
         .then(res => {
             setBoarddata(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         });
     }, [])
 
