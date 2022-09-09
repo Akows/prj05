@@ -18,6 +18,11 @@ const TodoListAddDB = ( props ) => {
     }, []);
 
     const addTodolist = () => {
+        if(!contextApi.loginStatus) {
+            alert("DB Todolist는 회원전용기능입니다.");
+            document.location.href = '/todolist';
+        }
+
         // 로그인 검증 실시.
         contextApi.loginCheck();
 

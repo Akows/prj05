@@ -147,13 +147,6 @@ const Todolist = () => {
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-
-
-
-
-
-
-
     return (
         <>
             {componentValue === "NoDB" ?
