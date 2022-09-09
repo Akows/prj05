@@ -9,7 +9,7 @@ import '../style/Board.css';
 
 // App.js에서 로그인 여부와 로그인 한 사용자의 아이디 값이 넘어옴.
 const Board = () => {
-    const loginInfo = useContext(myContext);
+    const contextApi = useContext(myContext);
 
     const [boarddata, setBoarddata] = useState([]);
     const [componentvalue, setComponentvalue] = useState('list');
@@ -58,8 +58,8 @@ const Board = () => {
                             <div className='board-sidemenu-title'>
                                 <h1>자유게시판</h1>
 
-                                {loginInfo.isLogin ? 
-                                    <h2>{loginInfo.whoLogin}</h2>
+                                {contextApi.loginStatus ? 
+                                    <h2>{contextApi.whoIsLogin}</h2>
                                 :
                                     <h2>익명(비로그인)</h2>
                                 }
@@ -86,7 +86,7 @@ const Board = () => {
                             {componentvalue === 'list' ? 
                                 <Boardlist boarddata={boarddata}/>
                             :
-                                <BoardWrite whoLogin={loginInfo.whoLogin}/>
+                                <BoardWrite whoLogin={contextApi.whoIsLogin}/>
                             }
                         </div>
 
