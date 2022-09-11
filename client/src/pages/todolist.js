@@ -224,7 +224,11 @@ const Todolist = () => {
                                     <TodoListBoxDB todosDB={todosDB}/>
                                 </div>
                                 <div className='tdl-pagenation'>
-
+                                    <Pagination
+                                        postsPerPage={postPerPage}
+                                        totalPosts={todosDB.datas?.length}
+                                        paginate={paginate}
+                                    />
                                 </div>
                             </div>
                         </div>
