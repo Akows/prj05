@@ -8,7 +8,7 @@ import '../style/BoardViewandMod.css';
 
 // App.js에서 로그인 여부와 로그인 한 사용자의 아이디 값이 넘어옴.
 const BoardViewandMod = () => {
-    const loginInfo = useContext(myContext);
+    const contextApi = useContext(myContext);
 
     // Generalforum에서 게시물 데이터를 가지고 오기위해 useLocation을 사용.
     const location = useLocation();
@@ -82,8 +82,8 @@ const BoardViewandMod = () => {
                             <div className='boardview-sidemenu-title'>
                                 <h1>글 보기</h1>
 
-                                {loginInfo.isLogin ? 
-                                    <h2>{loginInfo.whoLogin}</h2>
+                                {contextApi.loginStatus ? 
+                                    <h2>{contextApi.whoIsLogin}</h2>
                                 :
                                     <h2>익명(비로그인)</h2>
                                 }
@@ -92,7 +92,7 @@ const BoardViewandMod = () => {
 
                             </div>
                             <div className='boardview-sidemenu-menubar'>
-                                {loginInfo.whoLogin === boardWriter ?
+                                {contextApi.whoIsLogin === boardWriter ?
                                     <div className='boardview-sidemenu-writemenu boardview-section'>
                                         <button className='boardview-sidemenu-writebtu' onClick={deleteboard}>글삭제</button>
                                     </div>
@@ -102,7 +102,7 @@ const BoardViewandMod = () => {
                                     </div>
                                 }
 
-                                {loginInfo.whoLogin === boardWriter ?
+                                {contextApi.whoIsLogin === boardWriter ?
                                     <div className='boardview-sidemenu-writemenu boardview-section'>
                                         <button className='boardview-sidemenu-writebtu' onClick={changemodify}>글수정</button>
                                     </div>
