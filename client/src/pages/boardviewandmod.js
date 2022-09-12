@@ -1,12 +1,11 @@
-
-import axios from 'axios';
 import React, { useContext, useState } from 'react';
+import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import { myContext } from '../App';
 
 import '../style/BoardViewandMod.css';
+import '../style/GlobalStyle.css';
 
-// App.js에서 로그인 여부와 로그인 한 사용자의 아이디 값이 넘어옴.
 const BoardViewandMod = () => {
     const contextApi = useContext(myContext);
 
@@ -75,98 +74,95 @@ const BoardViewandMod = () => {
     
     return (
         <>
-            <div className='boardview-outer boardview-section'>
-                <div className='boardview-inner boardview-section'>
-                    <div className='boardview-boardviewform'>
-                        <div className='boardview-sidemenu'>
-                            <div className='boardview-sidemenu-title'>
-                                <h1>글 보기</h1>
+                <div className='bodvm-pagebackground setcenter'>
+                    <div className='bodvm-pageinner setcenter'>
+                        <div className='bodvm-bodarea setcenter gifont'>
 
-                                {contextApi.loginStatus ? 
-                                    <h2>{contextApi.whoIsLogin}</h2>
-                                :
-                                    <h2>익명(비로그인)</h2>
-                                }
+                            <div className='bodvm-sidebar'>
 
-                                <h3>{setTimeinfo}</h3>
+                                <div className='bodvm-sidetitle'>
+                                    <h1>자유게시판</h1>
+                                </div>
 
-                            </div>
-                            <div className='boardview-sidemenu-menubar'>
-                                {contextApi.whoIsLogin === boardWriter ?
-                                    <div className='boardview-sidemenu-writemenu boardview-section'>
-                                        <button className='boardview-sidemenu-writebtu' onClick={deleteboard}>글삭제</button>
-                                    </div>
+                                <div className='bodvm-sideutil'>
+                                    {contextApi.loginStatus ? 
+                                        <h2>{contextApi.whoIsLogin}</h2>
                                     :
-                                    <div className='boardview-sidemenu-writemenu boardview-section'>
-                                        <button className='boardview-sidemenu-writebtu'>삭제권한없음</button>
-                                    </div>
-                                }
+                                        <h2>익명(비로그인)</h2>
+                                    }
 
-                                {contextApi.whoIsLogin === boardWriter ?
-                                    <div className='boardview-sidemenu-writemenu boardview-section'>
-                                        <button className='boardview-sidemenu-writebtu' onClick={changemodify}>글수정</button>
-                                    </div>
-                                    :
-                                    <div className='boardview-sidemenu-writemenu boardview-section'>
-                                        <button className='boardview-sidemenu-writebtu'>수정권한없음</button>
-                                    </div>
-                                }
+                                    <h3>{setTimeinfo}</h3>
+                                </div>
+
+                                <div className='bodvm-sidebtu'>
+                                    {contextApi.whoIsLogin === boardWriter ?
+                                            <button className='bodvm-changebtu gifont' onClick={deleteboard}>글삭제</button>
+                                        :
+                                            <button className='bodvm-changebtu gifont'>삭제권한없음</button>
+                                    }
+
+                                    {contextApi.whoIsLogin === boardWriter ?
+                                            <button className='bodvm-changebtu gifont' onClick={changemodify}>글수정</button>
+                                        :
+                                            <button className='bodvm-changebtu gifont'>수정권한없음</button>  
+                                    }
+                                </div>
                             </div>
+
+                            {isModify ? 
+                                <div className='bodvm-contents'>
+                                    <div className='bodvm-contents-viewerinfo'>
+                                        <div className='bodvm-contents-number'>
+                                            {boardNumber}
+                                        </div>
+                                        <div className='bodvm-contents-title bodvm-section'>
+                                            <input defaultValue={boardTitle} onChange={handleInputTitle}/>
+                                        </div>
+                                        <div className='bodvm-contents-writer'>
+                                            {boardWriter}
+                                        </div>
+                                        <div className='bodvm-contents-writetime'>
+                                            {boardWritetime}
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-viewertext bodvm-section'>
+                                        <div className='bodvm-contents-text bodvm-section'>
+                                            <input defaultValue={boardText} onChange={handleInputText}/>
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-submitbutton'>
+                                        <button className='bodvm-contents-submitbtn' type='button' onClick={modifyboard}>수정하기</button>
+                                    </div>
+                                </div>
+                            :
+                                <div className='bodvm-contents'>
+                                    <div className='bodvm-contents-viewerinfo'>
+                                        <div className='bodvm-contents-number'>
+                                            {boardNumber}
+                                        </div>
+                                        <div className='bodvm-contents-title'>
+                                            {boardTitle}
+                                        </div>
+                                        <div className='bodvm-contents-writer'>
+                                            {boardWriter}
+                                        </div>
+                                        <div className='bodvm-contents-writetime'>
+                                            {boardWritetime}
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-viewertext bodvm-section'>
+                                        <div className='bodvm-contents-text'>
+                                            {boardText}
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
                         </div>
-
-                        {isModify ? 
-                            <div className='boardview-contents'>
-                                <div className='boardview-contents-viewerinfo'>
-                                    <div className='boardview-contents-number'>
-                                        {boardNumber}
-                                    </div>
-                                    <div className='boardview-contents-title boardview-section'>
-                                        <input defaultValue={boardTitle} onChange={handleInputTitle}/>
-                                    </div>
-                                    <div className='boardview-contents-writer'>
-                                        {boardWriter}
-                                    </div>
-                                    <div className='boardview-contents-writetime'>
-                                        {boardWritetime}
-                                    </div>
-                                </div>
-                                <div className='boardview-contents-viewertext boardview-section'>
-                                    <div className='boardview-contents-text boardview-section'>
-                                        <input defaultValue={boardText} onChange={handleInputText}/>
-                                    </div>
-                                </div>
-                                <div className='boardview-contents-submitbutton'>
-                                    <button className='boardview-contents-submitbtn' type='button' onClick={modifyboard}>수정하기</button>
-                                </div>
-                            </div>
-                        :
-                            <div className='boardview-contents'>
-                                <div className='boardview-contents-viewerinfo'>
-                                    <div className='boardview-contents-number'>
-                                        {boardNumber}
-                                    </div>
-                                    <div className='boardview-contents-title'>
-                                        {boardTitle}
-                                    </div>
-                                    <div className='boardview-contents-writer'>
-                                        {boardWriter}
-                                    </div>
-                                    <div className='boardview-contents-writetime'>
-                                        {boardWritetime}
-                                    </div>
-                                </div>
-                                <div className='boardview-contents-viewertext boardview-section'>
-                                    <div className='boardview-contents-text'>
-                                        {boardText}
-                                    </div>
-                                </div>
-                            </div>
-                        }
                     </div>
                 </div>
-            </div>
         </>
     )
 }
 
-export default BoardViewandMod;   
+export default BoardViewandMod;

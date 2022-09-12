@@ -1,89 +1,97 @@
-.boardview-section {
+.bodvm-section {
     display : flex;
     justify-content: center;
     align-items : center;
 }
 
-.boardview-outer {
+
+.bodvm-pagebackground {
     width: 100%;
-    height: 1200px;
+    height: 85vh;
 
-    margin: auto;
+    background-color: beige;
+}
+.bodvm-pageinner {
+    width: 95%;
+    height: 95%;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.bodvm-bodarea {
+    width: 95%;
+    height: 95%;
 }
 
-.boardview-inner {
-    width: 80%;
-    height: 100%;
-}
-
-.boardview-boardviewform {
-    width: 1600px;
-    height: 1000px;
-
-    font-family: 'GIfont';
-
-    display: flex;
-
-    /* border: 1px solid black; */
-    border-radius: 20px;
-    background-color: lightsteelblue;
-}
-
-.boardview-sidemenu {
+.bodvm-sidebar {
     width: 20%;
     height: 100%;
 
     border: 1px solid black;
+    border-radius: 15px;
 }
 
-.boardview-contents {
+.bodvm-sidetitle {
+    width: 100%;
+    height: 10%;
+}
+
+.bodvm-sideutil {
+    width: 100%;
+    height: 15%;
+}
+
+.bodvm-sidebtu {
+    width: 100%;
+    height: 10%;
+}
+
+.bodvm-changebtu {
+    width: 200px;
+    height: 60px;
+
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+
+    background-color: black;
+    color: white;
+}
+.bodvm-changebtu:active {
+    background-color: white;
+    color: black;
+}
+
+.bodvm-contents {
+    width: 80%;
+    height: 100%;
+
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bodvm-addbod {
+    width: 90%;
+    height: 12%;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.bodvm-showbod {
+    width: 90%;
+    height: 63%;
+}
+
+.bodvm-contents {
     width: 80%;
     height: 100%;
 
     border: 1px solid black;
 }
 
-.boardview-sidemenu-title {
-    width: 100%;
-    height: 20%;
-
-    text-align: center;
-
-    border: 1px solid black;
-}
-
-.boardview-sidemenu-menubar {
-    width: 100%;
-    height: 80%;
-
-    text-align: center;
-
-    border: 1px solid black;
-}
-
-.boardview-sidemenu-writemenu {
-    width: 100%;
-    height: 30%;
-
-    border: 1px solid black;
-}
-
-.boardview-sidemenu-writebtu {
-    width: 150px;
-    height: 80px;
-
-    font-family: 'GIfont';
-    font-size: large;
-
-    border-radius: 20px;
-    color: white;
-    background-color: black;
-}
-.boardview-sidemenu-writebtu:active {
-    color: red;
-}
-
-.boardview-contents-viewerinfo {
+.bodvm-contents-viewerinfo {
     width: 100%;
     height: 5%;
 
@@ -92,54 +100,54 @@
     border: 1px solid black;
 }
 
-.boardview-contents-number {
+.bodvm-contents-number {
     width: 5%;
     border: 1px solid black;
 }
-.boardview-contents-title {
+.bodvm-contents-title {
     width: 50%;
     border: 1px solid black;
 }
-.boardview-contents-title > input {
+.bodvm-contents-title > input {
     width: 90%;
     height: 90%;
     border: 1px solid black;
 }
-.boardview-contents-writer {
+.bodvm-contents-writer {
     width: 25%;
     border: 1px solid black;
 }
-.boardview-contents-writetime {
+.bodvm-contents-writetime {
     width: 20%;
     border: 1px solid black;
 }
 
 
-.boardview-contents-viewertext {
+.bodvm-contents-viewertext {
     width: 100%;
     height: 85%;
 
     border: 1px solid black;
 }
-.boardview-contents-text {
+.bodvm-contents-text {
     width: 85%;
     height: 85%;
     
     border: 1px solid black;
 }
-.boardview-contents-text > input {
+.bodvm-contents-text > input {
     width: 90%;
     height: 90%;
     border: 1px solid black;
 }
 
-.boardview-contents-submitbutton {
+.bodvm-contents-submitbutton {
     width: 100%;
     height: 10%;
 
     border: 1px solid black;
 }
-.boardview-contents-submitbtn {
+.bodvm-contents-submitbtn {
     width: 150px;
     height: 80px;
 
@@ -150,6 +158,6 @@
     color: white;
     background-color: black;
 }
-.boardview-contents-submitbtn:active {
+.bodvm-contents-submitbtn:active {
     color: red;
 }

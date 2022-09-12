@@ -1,22 +1,29 @@
-.bod-pagebackground {
+.bodvm-section {
+    display : flex;
+    justify-content: center;
+    align-items : center;
+}
+
+
+.bodvm-pagebackground {
     width: 100%;
     height: 85vh;
 
     background-color: beige;
 }
-.bod-pageinner {
+.bodvm-pageinner {
     width: 95%;
     height: 95%;
 
     border: 1px solid black;
     border-radius: 15px;
 }
-.bod-bodarea {
+.bodvm-bodarea {
     width: 95%;
     height: 95%;
 }
 
-.bod-sidebar {
+.bodvm-sidebar {
     width: 20%;
     height: 100%;
 
@@ -24,22 +31,22 @@
     border-radius: 15px;
 }
 
-.bod-sidetitle {
+.bodvm-sidetitle {
     width: 100%;
     height: 10%;
 }
 
-.bod-sideutil {
+.bodvm-sideutil {
     width: 100%;
     height: 15%;
 }
 
-.bod-sidebtu {
+.bodvm-sidebtu {
     width: 100%;
     height: 10%;
 }
 
-.bod-changebtu {
+.bodvm-changebtu {
     width: 200px;
     height: 60px;
 
@@ -50,12 +57,12 @@
     background-color: black;
     color: white;
 }
-.bod-changebtu:active {
+.bodvm-changebtu:active {
     background-color: white;
     color: black;
 }
 
-.bod-contents {
+.bodvm-contents {
     width: 80%;
     height: 100%;
 
@@ -65,57 +72,92 @@
     justify-content: center;
 }
 
-.bod-addbod {
+.bodvm-addbod {
     width: 90%;
     height: 12%;
 
     border: 1px solid black;
     border-radius: 15px;
 }
-.bod-showbod {
+.bodvm-showbod {
     width: 90%;
     height: 63%;
 }
-.bod-pagenation {
-    width: 90%;
-    height: 15%;
+
+.bodvm-contents {
+    width: 80%;
+    height: 100%;
 
     border: 1px solid black;
-    border-radius: 15px;
 }
 
-.bod-contents-boarddes {
+.bodvm-contents-viewerinfo {
     width: 100%;
-    height: 100%;
+    height: 5%;
 
     display: inline-flex;
-    align-items: center;
-    text-align: center;
 
-}
-
-.bod-conts-boddespubcss {
     border: 1px solid black;
-    border-radius: 15px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.bod-contents-boarddesnumber {
-    width: 10%;
-    height: 100%;
+.bodvm-contents-number {
+    width: 5%;
+    border: 1px solid black;
 }
-.bod-contents-boarddestitle {
+.bodvm-contents-title {
     width: 50%;
-    height: 100%;
+    border: 1px solid black;
 }
-.bod-contents-boarddeswriter {
-    width: 20%;
-    height: 100%;
+.bodvm-contents-title > input {
+    width: 90%;
+    height: 90%;
+    border: 1px solid black;
 }
-.bod-contents-boarddeswritetime {
+.bodvm-contents-writer {
+    width: 25%;
+    border: 1px solid black;
+}
+.bodvm-contents-writetime {
     width: 20%;
-    height: 100%;
+    border: 1px solid black;
+}
+
+
+.bodvm-contents-viewertext {
+    width: 100%;
+    height: 85%;
+
+    border: 1px solid black;
+}
+.bodvm-contents-text {
+    width: 85%;
+    height: 85%;
+    
+    border: 1px solid black;
+}
+.bodvm-contents-text > input {
+    width: 90%;
+    height: 90%;
+    border: 1px solid black;
+}
+
+.bodvm-contents-submitbutton {
+    width: 100%;
+    height: 10%;
+
+    border: 1px solid black;
+}
+.bodvm-contents-submitbtn {
+    width: 150px;
+    height: 80px;
+
+    font-family: 'GIfont';
+    font-size: large;
+
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+}
+.bodvm-contents-submitbtn:active {
+    color: red;
 }

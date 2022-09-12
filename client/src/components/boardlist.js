@@ -6,7 +6,7 @@ const BoardList = (props) => {
 
     return (
         <div className='board-contents-board'>
-            {props.boarddata && props.boarddata.datas?.map(item => {
+            {props.boarddata && props.boarddata?.map(item => {
                 return (
                     <div className='board-contents-boarddes' key={item.BOARD_NUMBER}>
                         <div className='board-contents-boarddesnumber bod-conts-boddespubcss'>

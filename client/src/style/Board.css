@@ -1,86 +1,121 @@
-.board-section {
-    display : flex;
-    justify-content: center;
-    align-items : center;
-}
-
-.board-outer {
+.bod-pagebackground {
     width: 100%;
-    height: 1200px;
+    height: 85vh;
 
-    margin: auto;
+    background-color: beige;
+}
+.bod-pageinner {
+    width: 95%;
+    height: 95%;
+
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.bod-bodarea {
+    width: 95%;
+    height: 95%;
 }
 
-.board-inner {
-    width: 80%;
-    height: 100%;
-}
-
-.board-boardform {
-    width: 1600px;
-    height: 1000px;
-
-    font-family: 'GIfont';
-
-    display: flex;
-
-    /* border: 1px solid black; */
-    border-radius: 20px;
-    background-color: lightsteelblue;
-}
-
-.board-sidemenu {
+.bod-sidebar {
     width: 20%;
     height: 100%;
 
-    /* border: 1px solid black; */
+    border: 1px solid black;
+    border-radius: 15px;
 }
 
-.board-contents {
+.bod-sidetitle {
+    width: 100%;
+    height: 10%;
+}
+
+.bod-sideutil {
+    width: 100%;
+    height: 15%;
+}
+
+.bod-sidebtu {
+    width: 100%;
+    height: 10%;
+}
+
+.bod-changebtu {
+    width: 200px;
+    height: 60px;
+
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+
+    background-color: black;
+    color: white;
+}
+.bod-changebtu:active {
+    background-color: white;
+    color: black;
+}
+
+.bod-contents {
     width: 80%;
     height: 100%;
 
-    /* border: 1px solid black; */
+    display: inline-flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.board-sidemenu-title {
-    width: 100%;
-    height: 20%;
+.bod-addbod {
+    width: 90%;
+    height: 12%;
 
-    margin-left: 15px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.bod-showbod {
+    width: 90%;
+    height: 63%;
+}
+.bod-pagenation {
+    width: 90%;
+    height: 15%;
 
-    /* text-align: center; */
-
-    /* border: 1px solid black; */
+    border: 1px solid black;
+    border-radius: 15px;
 }
 
-.board-sidemenu-menubar {
+.bod-contents-boarddes {
     width: 100%;
-    height: 80%;
+    height: 100%;
 
+    display: inline-flex;
+    align-items: center;
     text-align: center;
 
-    /* border: 1px solid black; */
 }
 
-.board-sidemenu-writemenu {
-    width: 100%;
-    height: 30%;
-
-    /* border: 1px solid black; */
+.bod-conts-boddespubcss {
+    border: 1px solid black;
+    border-radius: 15px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.board-sidemenu-writebtu {
-    width: 150px;
-    height: 80px;
-
-    font-family: 'GIfont';
-    font-size: large;
-
-    border-radius: 20px;
-    color: white;
-    background-color: black;
+.bod-contents-boarddesnumber {
+    width: 10%;
+    height: 100%;
 }
-.board-sidemenu-writebtu:active {
-    color: red;
+.bod-contents-boarddestitle {
+    width: 50%;
+    height: 100%;
+}
+.bod-contents-boarddeswriter {
+    width: 20%;
+    height: 100%;
+}
+.bod-contents-boarddeswritetime {
+    width: 20%;
+    height: 100%;
 }

@@ -1,82 +1,92 @@
-import React, { useContext, useMemo, useState } from 'react';
-import { myContext } from '../App';
-import axios from 'axios';
+import React, { useContext, useState } from 'react';
+
 
 import './Test.css';
 import '../style/GlobalStyle.css';
 
-import BoardWrite from '../components/boardwrite';
-import BoardList from '../components/boardlist';
-import Pagination from '../components/pagination';
+import { myContext } from '../App';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Test = () => {
     const contextApi = useContext(myContext);
 
-    const [boarddata, setBoarddata] = useState([]);
-    const [componentvalue, setComponentvalue] = useState('list');
+    // Generalforum에서 게시물 데이터를 가지고 오기위해 useLocation을 사용.
+    const location = useLocation();
 
-    React.useEffect(() => {
+    const [isModify, setIsModify] = useState(false);
+    const [boardTitle, setBoardTitle] = useState(location.state?.BOARD_TITLE);
+    const [boardText, setBoardText] = useState(location.state?.BOARD_TEXT);
+
+    // useLocation으로 가져온 데이터를 변수에 삽입.
+    const boardNumber = location.state?.BOARD_NUMBER;
+    const boardWriter = location.state?.BOARD_WRITER;
+    const boardWritetime = location.state?.BOARD_WRITE_TIME;
+
+    const setTimeinfo = '';
+
+    // 정확한 입력값을 체크하기 위해서 입력창의 값이 변하는 순간마다 값을 갱신, useState로 변수에 SET하도록 함.
+    const handleInputTitle = (e) => {
+        setBoardTitle(e.target.value)
+    }
+
+    const handleInputText = (e) => {
+        setBoardText(e.target.value)
+    }
+
+    const deleteboard = () => {
         axios
-        .get('/prj05/board/select')
+        .delete('/prj05/board/delete', {
+            params: {
+                'BOARD_NUMBER': boardNumber
+            }
+        })
         .then(res => {
-            setBoarddata(res.data);
-            console.log(res.data.datas);
-        });
-    }, [])
+            console.log(res)
+            alert('글이 삭제되었습니다.');
 
-    const setTimeinfo = useMemo(e => {
-        let today = new Date();
+            // 작업 완료 되면 페이지 이동(새로고침)
+            document.location.href = '/board'
+        })
+    };
 
-        let time = {
-            year: today.getFullYear(),  //현재 년도
-            month: today.getMonth() + 1, // 현재 월
-            date: today.getDate(), // 현제 날짜
-            // hours: today.getHours(), //현재 시간
-            // minutes: today.getMinutes(), //현재 분
-        };
+    const modifyboard = () => {
+        axios
+        .put('/prj05/board/modify', null, {
+            params: {
+                'BOARD_TITLE': boardTitle,
+                'BOARD_TEXT': boardText,
+                'BOARD_NUMBER': boardNumber
+            }
+        })
+        .then(res => {
+            // 작업 완료 되면 메시지 알람 띄움.
+            alert(res.data.SystemMessage);
+            // 작업 완료 되면 페이지 이동(새로고침).
+            document.location.href = '/board'
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
+    const changemodify = () => {
+        setIsModify(true);
+    };
     
-        let timestring = `${time.year}년 ${time.month}월 ${time.date}일`;
-
-        return timestring;
-    }, []);
-
-    const showboardlist = () => {
-        setComponentvalue('list');
-    };
-
-    const showboardcreate = () => {
-        setComponentvalue('create');
-    };
-
-    // 페이지네이션 로직
-    // 페이지네이션 로직
-
-    // 현재 페이지를 제어할 변수 (가장 처음으로 보여질 페이지)
-    const [currentPage, setCurrentPage] = useState(1);
-    // 페이지 당 요소 갯수를 제어할 변수
-    const [postPerPage] = useState(5);
-
-    // Get current posts
-    const indexOfLastPost = currentPage * postPerPage;
-    const indexOfFirstPost = indexOfLastPost - postPerPage;
-    const currentPosts = boarddata.datas?.slice(indexOfFirstPost, indexOfLastPost);
-
-    // Change page
-    const paginate = pageNumber => setCurrentPage(pageNumber);
-
     return (
         <>
-                <div className='bod-pagebackground setcenter'>
-                    <div className='bod-pageinner setcenter'>
-                        <div className='bod-bodarea setcenter gifont'>
+                <div className='bodvm-pagebackground setcenter'>
+                    <div className='bodvm-pageinner setcenter'>
+                        <div className='bodvm-bodarea setcenter gifont'>
 
-                            <div className='bod-sidebar'>
+                            <div className='bodvm-sidebar'>
 
-                                <div className='bod-sidetitle'>
+                                <div className='bodvm-sidetitle'>
                                     <h1>자유게시판</h1>
                                 </div>
 
-                                <div className='bod-sideutil'>
+                                <div className='bodvm-sideutil'>
                                     {contextApi.loginStatus ? 
                                         <h2>{contextApi.whoIsLogin}</h2>
                                     :
@@ -86,45 +96,77 @@ const Test = () => {
                                     <h3>{setTimeinfo}</h3>
                                 </div>
 
-                                <div className='bod-sidebtu'>
-                                    <button className='bod-changebtu gifont' onClick={showboardlist}>글 목록 보기</button>
-                                    <button className='bod-changebtu gifont' onClick={showboardcreate}>글 쓰기</button>
-                                </div>
+                                <div className='bodvm-sidebtu'>
+                                    {contextApi.whoIsLogin === boardWriter ?
+                                            <button className='bodvm-changebtu gifont' onClick={deleteboard}>글삭제</button>
+                                        :
+                                            <button className='bodvm-changebtu gifont'>삭제권한없음</button>
+                                    }
 
+                                    {contextApi.whoIsLogin === boardWriter ?
+                                            <button className='bodvm-changebtu gifont' onClick={changemodify}>글수정</button>
+                                        :
+                                            <button className='bodvm-changebtu gifont'>수정권한없음</button>  
+                                    }
+                                </div>
                             </div>
 
-                            <div className='bod-contents'>
-                                <div className='bod-addbod'>
-                                    <div className='bod-contents-boarddes'>
-                                        <div className='bod-contents-boarddesnumber bod-conts-boddespubcss'>
-                                            <h3>글번호</h3>   
+                            {isModify ? 
+                                <div className='bodvm-contents'>
+                                    <div className='bodvm-contents-viewerinfo'>
+                                        <div className='bodvm-contents-number'>
+                                            {boardNumber}
                                         </div>
-                                        <div className='bod-contents-boarddestitle bod-conts-boddespubcss'>
-                                            <h3>제목</h3>
+                                        <div className='bodvm-contents-title bodvm-section'>
+                                            <input defaultValue={boardTitle} onChange={handleInputTitle}/>
                                         </div>
-                                        <div className='bod-contents-boarddeswriter bod-conts-boddespubcss'>
-                                            <h3>작성자</h3>
+                                        <div className='bodvm-contents-writer'>
+                                            {boardWriter}
                                         </div>
-                                        <div className='bod-contents-boarddeswritetime bod-conts-boddespubcss'>
-                                            <h3>작성시간</h3>
+                                        <div className='bodvm-contents-writetime'>
+                                            {boardWritetime}
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-viewertext bodvm-section'>
+                                        <div className='bodvm-contents-text bodvm-section'>
+                                            <input defaultValue={boardText} onChange={handleInputText}/>
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-submitbutton'>
+                                        <button className='bodvm-contents-submitbtn' type='button' onClick={modifyboard}>수정하기</button>
+                                    </div>
+                                </div>
+                            :
+                                <div className='bodvm-contents'>
+                                    <div className='bodvm-contents-viewerinfo'>
+                                        <div className='bodvm-contents-number'>
+                                            {boardNumber}
+                                        </div>
+                                        <div className='bodvm-contents-title'>
+                                            {boardTitle}
+                                        </div>
+                                        <div className='bodvm-contents-writer'>
+                                            {boardWriter}
+                                        </div>
+                                        <div className='bodvm-contents-writetime'>
+                                            {boardWritetime}
+                                        </div>
+                                    </div>
+                                    <div className='bodvm-contents-viewertext bodvm-section'>
+                                        <div className='bodvm-contents-text'>
+                                            {boardText}
                                         </div>
                                     </div>
                                 </div>
-                                <div className='bod-showbod'>
-                                    {componentvalue === 'list' ? 
-                                        <BoardList boarddata={boarddata}/>
-                                    :
-                                        <BoardWrite whoLogin={contextApi.whoIsLogin}/>
-                                    }
-                                </div>
-                                <div className='bod-pagenation'>
-                                    <Pagination
-                                        postsPerPage={postPerPage}
-                                        totalPosts={currentPosts}
-                                        paginate={paginate}
-                                    />
-                                </div>
-                            </div>
+                            }
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
