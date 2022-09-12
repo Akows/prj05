@@ -36,6 +36,9 @@ const Todolist = () => {
     // Todolist 정보를 담는 변수.
     const [todosDBCount, setTodosDBCount] = useState([]);
 
+    // 로딩 제어 변수.
+    const [loading, setLoading] = useState(false);
+
     // 화면 전환을 제어하는 onClick 함수들.
     const toDBVersion = () => {
         setComponentValue("DB");
@@ -67,7 +70,7 @@ const Todolist = () => {
             })
 
             setTodosDB(res.data);   
-            console.log(res.data);
+            setLoading(true);
         })
         .catch((res) => {
             console.log(res.data.SystemMassage);
@@ -231,7 +234,18 @@ const Todolist = () => {
                                     <TodoListAddDB memberId={memberId}/>
                                 </div>
                                 <div className='tdl-showtdl'>
-                                    <TodoListBoxDB todosDB={currentDBPosts}/>
+                                    {!loading ?
+                                        <>
+                                            <div className='todolist-loadbox'>
+                                                <h1>Loading...</h1>
+                                            </div>
+                                        </>
+                                    :
+                                        <>
+                                            <TodoListBoxDB todosDB={currentDBPosts}/>
+                                        </>
+                                    }
+
                                 </div>
                                 <div className='tdl-pagenation'>
                                     <Pagination
