@@ -33,6 +33,8 @@ const Todolist = () => {
 
     // Todolist 정보를 담는 변수.
     const [todosDB, setTodosDB] = useState([]);
+    // Todolist 정보를 담는 변수.
+    const [todosDBCount, setTodosDBCount] = useState([]);
 
     // 화면 전환을 제어하는 onClick 함수들.
     const toDBVersion = () => {
@@ -57,8 +59,15 @@ const Todolist = () => {
             'memberId': memberId
         })
         .then((res) => {
-            // console.log(res.data);
-            setTodosDB(res.data);           
+            axios.post('/prj05/todo/getpostcount', {
+                'memberId': memberId
+            })
+            .then((res) => {
+                setTodosDBCount(res.data.datas[0].TODO_COUNT);
+            })
+
+            setTodosDB(res.data);   
+            console.log(res.data);
         })
         .catch((res) => {
             console.log(res.data.SystemMassage);
@@ -143,6 +152,7 @@ const Todolist = () => {
     const indexOfLastPost = currentPage * postPerPage;
     const indexOfFirstPost = indexOfLastPost - postPerPage;
     const currentPosts = todos.slice(indexOfFirstPost, indexOfLastPost);
+    const currentDBPosts = todosDB.datas?.slice(indexOfFirstPost, indexOfLastPost);
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -221,12 +231,12 @@ const Todolist = () => {
                                     <TodoListAddDB memberId={memberId}/>
                                 </div>
                                 <div className='tdl-showtdl'>
-                                    <TodoListBoxDB todosDB={todosDB}/>
+                                    <TodoListBoxDB todosDB={currentDBPosts}/>
                                 </div>
                                 <div className='tdl-pagenation'>
                                     <Pagination
                                         postsPerPage={postPerPage}
-                                        totalPosts={todosDB.datas?.length}
+                                        totalPosts={todosDBCount}
                                         paginate={paginate}
                                     />
                                 </div>

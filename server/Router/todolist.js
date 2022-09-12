@@ -31,6 +31,25 @@ router.post("/showtodo", (req, res) => {
     });
 })
 
+router.post("/getpostcount", (req, res) => {
+    const { memberId } = req.body;
+
+    const params = [memberId];
+
+    const sqlQuery = `SELECT count(*) as "TODO_COUNT" 
+                        FROM todolist
+                        WHERE TODO_MEMBER = ?;`;
+
+    db.query(sqlQuery, params, (err, data) => {
+        if (!err) {
+            res.json({ datas: data });
+        }
+        else {
+            res.json({ SystemMassage: "TODO 데이터 조회에 에러가 발생하였습니다." });
+        }
+    });
+})
+
 router.post("/todoinsert", (req, res) => {
     const { memberId, insertText } = req.body;
 

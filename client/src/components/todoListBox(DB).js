@@ -5,7 +5,7 @@ import TodoObjectDB from './todoObject(DB)';
 const TodoListBoxDB = ( props ) => {
     return (
         <div className='todolist-listbox'>
-            {props.todosDB && props.todosDB.datas?.map(item => {
+            {props.todosDB && props.todosDB.map(item => {
                 return (
                     <div key={item.TODO_NUMBER}>
                         <TodoObjectDB todo={item}/>
