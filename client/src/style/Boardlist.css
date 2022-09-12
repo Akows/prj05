@@ -1,5 +1,5 @@
 .board-contents-board {
-    width: 90%;
+    width: 100%;
     height: 90%;
 
     text-align: center;
@@ -7,8 +7,18 @@
     /* border: 1px solid black; */
 }
 
+.bod-conts-boddespubcss {
+    border: 1px solid black;
+    border-radius: 15px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .board-contents-boarddes {
     width: 100%;
+    height: 15%;
 
     display: inline-flex;
 
@@ -16,7 +26,7 @@
 }
 
 .board-contents-boarddesnumber {
-    width: 5%;
+    width: 10%;
     border: 1px solid black;
 }
 .board-contents-boarddestitle {
@@ -24,14 +34,13 @@
     border: 1px solid black;
 }
 .board-contents-boarddeswriter {
-    width: 25%;
+    width: 20%;
     border: 1px solid black;
 }
 .board-contents-boarddeswritetime {
     width: 20%;
     border: 1px solid black;
 }
-
 
 .board-inner-boardcontents-title {
     width: 100%;
