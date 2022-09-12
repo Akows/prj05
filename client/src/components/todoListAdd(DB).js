@@ -48,7 +48,7 @@ const TodoListAddDB = ( props ) => {
         <>
             <div className='tdl-addform gifont'>
                 <div className="tdl-form">
-                    <input className="tdl-addinput gifont" placeholder="추가할 할 일을 입력하세요" defaultValue={inputText} onChange={onChange}/>
+                    <input className="tdl-addinput gifont" placeholder="추가할 할 일을 입력하세요" defaultValue={inputText} onChange={onChange} maxlength={35}/>
                     <button className="tdl-addbtu gifont" onClick={addTodolist}>
                         <h2>추가</h2>
                     </button>
