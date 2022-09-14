@@ -1,6 +1,6 @@
 .capi-pagebackground {
     width: 100%;
-    height: 85vh;
+    height: 1200px;
 
     background-color: beige;
 }
@@ -42,24 +42,12 @@
     justify-content: center;
 }
 
-.capi-addcapi {
+.capi-showapi {
     width: 90%;
-    height: 12%;
+    height: 100%;
 
     border: 1px solid black;
     border-radius: 15px;
-}
-.capi-showcapi {
-    width: 90%;
-    height: 63%;
 
-    border: 1px solid black;
-    border-radius: 15px;
-}
-.capi-pagenation {
-    width: 90%;
-    height: 15%;
-
-    border: 1px solid black;
-    border-radius: 15px;
+    background-color: beige;
 }
