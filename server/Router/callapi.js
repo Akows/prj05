@@ -10,7 +10,7 @@ require("dotenv").config();
 
 
 router.post("/call", (req, res) => {
-    const { apiKey, uuid } = req.body;
+    const { apiKey, uuid, numOfRows, pageNo } = req.body;
 
     if (!uuidAPIKey.isAPIKey(apiKey) || !uuidAPIKey.check(apiKey, uuid)) {
         res.json({ SystemMassage: "API KEY가 유효하지 않습니다." })
@@ -50,7 +50,7 @@ router.post("/call", (req, res) => {
 
         var options = {
             'method': 'GET',
-            'url': 'https://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo?serviceKey=z7ImRcb%2BDxJrHffyg9qkxVkYQgzL8EyntQLQds6ahlEhx4Jo10F1luSE4gBwkvxI3JWbQqINDilLifoBhUJVDQ%3D%3D&returnType=json&numOfRows=100&pageNo=1&year=2020&itemCode=PM10',
+            'url': `https://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo?serviceKey=z7ImRcb%2BDxJrHffyg9qkxVkYQgzL8EyntQLQds6ahlEhx4Jo10F1luSE4gBwkvxI3JWbQqINDilLifoBhUJVDQ%3D%3D&returnType=json&numOfRows=${numOfRows}&pageNo=${pageNo}&year=2020&itemCode=PM10`,
             'headers': {
                 'Cookie': 'JSESSIONID=AiSnOQjLVerd3nro1L45nXu6zlhIp3nT75enpgry5dSSPyA9b7LGl2oh7SOdTTLA.openapiwas1_servlet_engine1; WMONID=Z5r9Rq6-Xsh'
             }

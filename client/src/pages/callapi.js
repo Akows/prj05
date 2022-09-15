@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import '../style/Callapi.css';
 
@@ -12,38 +12,37 @@ const Callapi = () => {
         uuid: '80cbb7cd-216c-4c7a-a9a5-f269ac98baa8'
     };
 
-    let startNum = 0;
-    let endNum = 15;
+    let numOfRows = 12;
+    let pageNo = 1;
 
     const callAPIAction = () => {
         axios.post('prj05/api/call/', {
             apiKey: key.apiKey,
-            uuid: key.uuid
+            uuid: key.uuid,
+            numOfRows: numOfRows,
+            pageNo: pageNo
         })
         .then(res => {
             const newData = [];
-            res.data.datas.response.body.items.slice(startNum, endNum).forEach(element => { newData.push(element); });
+            res.data.datas.response.body.items.forEach(element => { newData.push(element); });
             setApiData((oldData => [...oldData, ...newData]));
 
-            const handleScrollCharacter = (event) => {
-
-                if (window.innerHeight + event.target.documentElement.scrollTop + 1 >= event.target.documentElement.scrollHeight) {
-                    startNum = endNum;
-                    endNum = startNum + 15;
-
-                    setTimeout(() => {
-                        callAPIAction(); 
-                    }, 1000);
-                }
-            };
-
-            window.addEventListener('scroll', handleScrollCharacter);
         })
         .catch(err => {
             console.log(err);
         })
     }
 
+    const handleScrollCharacter = (event) => {
+        if (window.innerHeight + event.target.documentElement.scrollTop + 1 >= event.target.documentElement.scrollHeight) {
+            pageNo++;
+            callAPIAction();
+        }
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScrollCharacter);
+    }, []);
 
 	return (
         <>
@@ -77,9 +76,11 @@ const Callapi = () => {
                                 {apiData && apiData.map(item => {
                                     return (
                                         <div className='capi-datablock' key={item.sn}>
-                                            {item.districtName} <br/>
-                                            {item.moveName} <br/>
-                                            {item.issueGbn} <br/><hr/>
+                                            식별번호 : {item.sn} <br/>
+                                            지역명 : {item.districtName} <br/>
+                                            권역명 : {item.moveName} <br/>
+                                            오염수치 : {item.issueVal} <br/>
+                                            경보수준 : {item.issueGbn} <br/><hr/>
                                         </div>
                                     )
                                 })}
