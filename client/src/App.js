@@ -35,12 +35,12 @@ function App() {
     axios
     .get('/prj05/member/validation')
     .then((res) => {
-      // console.log("정상검증됨.");
+      console.log("JWT 검증이 정상적으로 통과되었습니다.");
       setLoginStatus(true);
       setwhoIsLogin(res.data.memberid);
     })
     .catch(() => {
-      // console.log("정상검증되지않음.");
+      console.log("JWT 검증에 이상 발생함.");
       setLoginStatus(false);
       setwhoIsLogin('비로그인사용자');
     });
