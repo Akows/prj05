@@ -7,28 +7,43 @@ const Callapi = () => {
 
     const [apiData, setApiData] = useState('');
 
-    const [inputType, setInputType] = useState('');
-
     const key = { 
         apiKey: 'G35VFKA-45P4RYK-N6JZ4TA-NJCBNA1',
         uuid: '80cbb7cd-216c-4c7a-a9a5-f269ac98baa8'
     };
 
+    let startNum = 0;
+    let endNum = 15;
+
     const callAPIAction = () => {
         axios.post('prj05/api/call/', {
             apiKey: key.apiKey,
-            uuid: key.uuid,            
-            inputType: inputType
+            uuid: key.uuid
         })
         .then(res => {
-            console.log(res.data.datas.response.body.items);
-            setApiData(res.data.datas.response.body.items);
+            const newData = [];
+            res.data.datas.response.body.items.slice(startNum, endNum).forEach(element => { newData.push(element); });
+            setApiData((oldData => [...oldData, ...newData]));
+
+            const handleScrollCharacter = (event) => {
+
+                if (window.innerHeight + event.target.documentElement.scrollTop + 1 >= event.target.documentElement.scrollHeight) {
+                    startNum = endNum;
+                    endNum = startNum + 15;
+
+                    setTimeout(() => {
+                        callAPIAction(); 
+                    }, 1000);
+                }
+            };
+
+            window.addEventListener('scroll', handleScrollCharacter);
         })
         .catch(err => {
             console.log(err);
         })
-
     }
+
 
 	return (
         <>
@@ -41,8 +56,7 @@ const Callapi = () => {
                             <h1>API 호출</h1>
 
                             <div className='capi-sideutil'>
-                                <button onClick={callAPIAction}>Go</button>
-                                <input type='text' className='gifont' value={inputType} placeholder='아이디를 입력해주세요' onChange={(e) => {setInputType(e.target.value)}}/>
+                                <button className='capi-callbtu gifont' onClick={callAPIAction}><h3>데이터 받아오기</h3></button>
                             </div>
 
                         </div>
@@ -51,15 +65,28 @@ const Callapi = () => {
 
                             <div className='capi-showapi'>
 
-                            {apiData && apiData.map(item => {
-                                return (
-                                    <div key={item.sn}>
-                                        {item.districtName} <br/>
-                                        {item.moveName} <br/>
-                                        {item.issueGbn} <br/><hr/>
-                                    </div>
-                                )
-                            })}
+                            {apiData === '' ?
+                            <>
+                                <div className='capi-loading'>
+                                    <h1>공공데이터 API 호출하여 데이터 출력하기</h1>
+                                </div>
+
+                            </>
+                            :
+                            <>
+                                {apiData && apiData.map(item => {
+                                    return (
+                                        <div className='capi-datablock' key={item.sn}>
+                                            {item.districtName} <br/>
+                                            {item.moveName} <br/>
+                                            {item.issueGbn} <br/><hr/>
+                                        </div>
+                                    )
+                                })}
+                            </>    
+                            }
+
+                            
 
 
 
