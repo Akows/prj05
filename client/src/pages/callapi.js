@@ -11,27 +11,46 @@ const Callapi = () => {
 
     const key = { 
         apiKey: 'G35VFKA-45P4RYK-N6JZ4TA-NJCBNA1',
-        uuid: '80cbb7cd-216c-4c7a-a9a5-f269ac98baa8' 
+        uuid: '80cbb7cd-216c-4c7a-a9a5-f269ac98baa8'
     };
 
     const callAPIAction = () => {
-        // axios.get('prj05/api/call/:apiKey', {
-        //     inputType: inputType,
-        // })
+
+        // const serviceKey = "z7ImRcb%2BDxJrHffyg9qkxVkYQgzL8EyntQLQds6ahlEhx4Jo10F1luSE4gBwkvxI3JWbQqINDilLifoBhUJVDQ%3D%3D";
+
+        // var url = "http://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo";
+        // var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + serviceKey; /* Service Key*/
+        // queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /* */
+        // queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /* */
+        // queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */
+        // queryParams += '&' + encodeURIComponent('year') + '=' + encodeURIComponent('2020'); /* */
+        // queryParams += '&' + encodeURIComponent('itemCode') + '=' + encodeURIComponent('PM10'); /* */
+
+        // const api_url = url + queryParams;
+
+        // axios.post(api_url)
         // .then(res => {
         //     console.log(res.data);
         // })
-        // .catch(res => {
-        //     console.log(res.data);
+        // .catch(() => {
+        //     console.log("err");
         // })
 
-        axios.get('prj05/api/call/:aa')
+
+
+
+        axios.post('prj05/api/call/', {
+            apiKey: key.apiKey,
+            uuid: key.uuid,            
+            inputType: inputType
+        })
         .then(res => {
-            console.log(res.data);
+            console.log(res.data.SystemMassage);
         })
         .catch(res => {
-            console.log(res.data);
+            console.log(res.data.SystemMassage);
         })
+
     }
 
 	return (
