@@ -15,11 +15,6 @@ const Uppermenu = () => {
         axios
         .get('/prj05/member/logout')
         .then(res => {
-            sessionStorage.removeItem("MEMBER_NUMBER");
-            sessionStorage.removeItem("MEMBER_ID");
-            sessionStorage.removeItem("MEMBER_NAME");
-            sessionStorage.removeItem("MEMBER_EMAIL");
-            sessionStorage.removeItem("MEMBER_JOINDATE");
             alert(res.data.SystemMassage);
             document.location.href = '/'
         })
