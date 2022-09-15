@@ -5,7 +5,7 @@ import '../style/Callapi.css';
 
 const Callapi = () => {
 
-    // const [apiData, setApiData] = useState('');
+    const [apiData, setApiData] = useState('');
 
     const [inputType, setInputType] = useState('');
 
@@ -15,40 +15,17 @@ const Callapi = () => {
     };
 
     const callAPIAction = () => {
-
-        // const serviceKey = "z7ImRcb%2BDxJrHffyg9qkxVkYQgzL8EyntQLQds6ahlEhx4Jo10F1luSE4gBwkvxI3JWbQqINDilLifoBhUJVDQ%3D%3D";
-
-        // var url = "http://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo";
-        // var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + serviceKey; /* Service Key*/
-        // queryParams += '&' + encodeURIComponent('returnType') + '=' + encodeURIComponent('json'); /* */
-        // queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('100'); /* */
-        // queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /* */
-        // queryParams += '&' + encodeURIComponent('year') + '=' + encodeURIComponent('2020'); /* */
-        // queryParams += '&' + encodeURIComponent('itemCode') + '=' + encodeURIComponent('PM10'); /* */
-
-        // const api_url = url + queryParams;
-
-        // axios.post(api_url)
-        // .then(res => {
-        //     console.log(res.data);
-        // })
-        // .catch(() => {
-        //     console.log("err");
-        // })
-
-
-
-
         axios.post('prj05/api/call/', {
             apiKey: key.apiKey,
             uuid: key.uuid,            
             inputType: inputType
         })
         .then(res => {
-            console.log(res.data.SystemMassage);
+            console.log(res.data.datas.response.body.items);
+            setApiData(res.data.datas.response.body.items);
         })
-        .catch(res => {
-            console.log(res.data.SystemMassage);
+        .catch(err => {
+            console.log(err);
         })
 
     }
@@ -74,13 +51,15 @@ const Callapi = () => {
 
                             <div className='capi-showapi'>
 
-                            {/* {apiData && apiData.map(item => {
+                            {apiData && apiData.map(item => {
                                 return (
-                                    <>
-                                        {item}
-                                    </>
+                                    <div key={item.sn}>
+                                        {item.districtName} <br/>
+                                        {item.moveName} <br/>
+                                        {item.issueGbn} <br/><hr/>
+                                    </div>
                                 )
-                            })} */}
+                            })}
 
 
 
