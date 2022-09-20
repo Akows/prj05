@@ -213,14 +213,5 @@ router.put("/infomodify", (req, res) => {
     });
 })
 
-
-
-
-
-
-
-
-
 // Router를 사용하고 있으므로 사용 코드를 작성해준다.
 module.exports = router;
-

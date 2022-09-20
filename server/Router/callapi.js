@@ -46,6 +46,7 @@ router.post("/call", (req, res) => {
         //     }
         // });
 
+        // 1차 인증서 문제를 해결하기 위해, 본 프로젝트에서는 인증서 보안 설정을 꺼둠.
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
         var options = {

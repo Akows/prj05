@@ -71,6 +71,14 @@ const BoardViewandMod = () => {
     const changemodify = () => {
         setIsModify(true);
     };
+
+    const noMemberWarning = () => {
+        alert("비회원은 삭제/수정이 불가능합니다.");
+    }
+
+    const noAuthWarning = () => {
+        alert("다른 회원의 글은 삭제/수정이 불가능합니다.");
+    }
     
     return (
         <>
@@ -95,16 +103,25 @@ const BoardViewandMod = () => {
                                 </div>
 
                                 <div className='bodvm-sidebtu'>
-                                    {contextApi.whoIsLogin === boardWriter ?
-                                            <button className='bodvm-changebtu gifont' onClick={deleteboard}>글삭제</button>
-                                        :
-                                            <button className='bodvm-changebtu gifont'>삭제권한없음</button>
-                                    }
+                                    {contextApi.loginStatus ? 
+                                    <>
+                                        {contextApi.whoIsLogin === boardWriter ?
+                                                <button className='bodvm-changebtu gifont' onClick={deleteboard}>글삭제</button>
+                                            :
+                                                <button className='bodvm-changebtu gifont' onClick={noAuthWarning}>삭제권한없음</button>
+                                        }
 
-                                    {contextApi.whoIsLogin === boardWriter ?
-                                            <button className='bodvm-changebtu gifont' onClick={changemodify}>글수정</button>
-                                        :
-                                            <button className='bodvm-changebtu gifont'>수정권한없음</button>  
+                                        {contextApi.whoIsLogin === boardWriter ?
+                                                <button className='bodvm-changebtu gifont' onClick={changemodify}>글수정</button>
+                                            :
+                                                <button className='bodvm-changebtu gifont' onClick={noAuthWarning}>수정권한없음</button>  
+                                        }
+                                    </>
+                                    :  
+                                    <>
+                                        <button className='bodvm-changebtu gifont' onClick={noMemberWarning}>삭제권한없음</button>
+                                        <button className='bodvm-changebtu gifont' onClick={noMemberWarning}>수정권한없음</button>  
+                                    </>  
                                     }
                                 </div>
                             </div>

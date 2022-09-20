@@ -184,7 +184,6 @@ const Todolist = () => {
                             </div>
 
                             <div className='tdl-contents'>
-
                                 <div className='tdl-addtdl'>
                                     <TodoListAdd onAdd={onAdd}/>
                                 </div>
@@ -229,31 +228,40 @@ const Todolist = () => {
                             </div>
 
                             <div className='tdl-contents'>
+                                {contextApi.loginStatus ? 
+                                    <>
+                                        <div className='tdl-addtdl'>
+                                            <TodoListAddDB memberId={memberId}/>
+                                        </div>
+                                        <div className='tdl-showtdl'>
+                                            {!loading ?
+                                                <>
+                                                    <div className='todolist-loadbox'>
+                                                        <h1>Loading...</h1>
+                                                    </div>
+                                                </>
+                                            :
+                                                <>
+                                                    <TodoListBoxDB todosDB={currentDBPosts}/>
+                                                </>
+                                            }
 
-                                <div className='tdl-addtdl'>
-                                    <TodoListAddDB memberId={memberId}/>
-                                </div>
-                                <div className='tdl-showtdl'>
-                                    {!loading ?
-                                        <>
-                                            <div className='todolist-loadbox'>
-                                                <h1>Loading...</h1>
-                                            </div>
-                                        </>
+                                        </div>
+                                        <div className='tdl-pagenation'>
+                                            <Pagination
+                                                postsPerPage={postPerPage}
+                                                totalPosts={todosDBCount}
+                                                paginate={paginate}
+                                            />
+                                        </div>
+                                    </>
                                     :
-                                        <>
-                                            <TodoListBoxDB todosDB={currentDBPosts}/>
-                                        </>
-                                    }
-
-                                </div>
-                                <div className='tdl-pagenation'>
-                                    <Pagination
-                                        postsPerPage={postPerPage}
-                                        totalPosts={todosDBCount}
-                                        paginate={paginate}
-                                    />
-                                </div>
+                                    <>
+                                        <div className='tdl-showtdl'>
+                                            <h1>본 기능은 회원전용 기능입니다.</h1>
+                                        </div>
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

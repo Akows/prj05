@@ -1,7 +1,8 @@
-import '../style/Join.css';
-import '../style/GlobalStyle.css';
 import { useState } from 'react';
 import axios from 'axios';
+
+import '../style/Join.css';
+import '../style/GlobalStyle.css';
 
 const Join = () => {
 
