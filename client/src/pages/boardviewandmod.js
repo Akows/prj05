@@ -44,7 +44,7 @@ const BoardViewandMod = () => {
             alert('글이 삭제되었습니다.');
 
             // 작업 완료 되면 페이지 이동(새로고침)
-            document.location.href = '/board'
+            document.location.href = '/'
         })
     };
 
@@ -61,7 +61,7 @@ const BoardViewandMod = () => {
             // 작업 완료 되면 메시지 알람 띄움.
             alert(res.data.SystemMessage);
             // 작업 완료 되면 페이지 이동(새로고침).
-            document.location.href = '/board'
+            document.location.href = '/'
         })
         .catch(error => {
             console.log(error);
